@@ -35,7 +35,7 @@ struct MainMenuView: View {
                         }
                         Spacer()
                         Button {
-                            path.append(Route.info)
+                            path.append(Route.howToPlay)
                         } label: {
                             Image("infoButton")
                                 .resizable()

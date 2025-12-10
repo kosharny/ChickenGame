@@ -14,6 +14,9 @@ enum Route: Hashable {
     case profile
     case settingsGame
     case leaderboard
+    case howToPlay
+    case termsOfUse
+    case privatePolicy
 }
 
 struct AppNavigation: View {
@@ -37,6 +40,12 @@ struct AppNavigation: View {
                         SettingsGameView(path: $path)
                     case .leaderboard:
                         LeaderboardView(path: $path)
+                    case .howToPlay:
+                        HowToPlayView(path: $path)
+                    case .termsOfUse:
+                        TermsOfUseView(path: $path)
+                    case .privatePolicy:
+                        PrivatePolicyView(path: $path)
                     }
                 }
         }
