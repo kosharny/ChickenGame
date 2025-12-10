@@ -52,7 +52,7 @@ struct SelectionLevelView: View {
                         
                         GridRow {
                             Button {
-                                
+                                path.append(Route.game)
                             } label: {
                                 levaelView(lavel: 1)
                             }

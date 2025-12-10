@@ -9,7 +9,6 @@ import SwiftUI
 
 enum Route: Hashable {
     case play
-    case info
     case settings
     case profile
     case settingsGame
@@ -17,6 +16,11 @@ enum Route: Hashable {
     case howToPlay
     case termsOfUse
     case privatePolicy
+    case game
+    case menu
+    case pauseGame
+    case winGame
+    case loseGame
 }
 
 struct AppNavigation: View {
@@ -28,8 +32,8 @@ struct AppNavigation: View {
             MainMenuView(path: $path)
                 .navigationDestination(for: Route.self) { route in
                     switch route {
-                    case .info:
-                        Text("Info")
+                    case .menu:
+                        MainMenuView(path: $path)
                     case .play:
                         SelectionLevelView(path: $path)
                     case .settings:
@@ -46,6 +50,14 @@ struct AppNavigation: View {
                         TermsOfUseView(path: $path)
                     case .privatePolicy:
                         PrivatePolicyView(path: $path)
+                    case .game:
+                        GameView(path: $path)
+                    case .pauseGame:
+                        PauseGameView(path: $path)
+                    case .winGame:
+                        WinView(path: $path)
+                    case .loseGame:
+                        LoseView(path: $path)
                     }
                 }
         }

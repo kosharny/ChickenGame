@@ -60,6 +60,7 @@ struct MainMenuView: View {
                 .padding()
             }
         }
+        .navigationBarBackButtonHidden()
     }
 }
 
