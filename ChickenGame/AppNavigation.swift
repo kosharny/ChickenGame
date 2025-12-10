@@ -11,6 +11,7 @@ enum Route: Hashable {
     case play
     case info
     case settings
+    case profile
 }
 
 struct AppNavigation: View {
@@ -27,7 +28,9 @@ struct AppNavigation: View {
                     case .play:
                         SelectionLevelView(path: $path)
                     case .settings:
-                        Text("Settings")
+                        SettingsView(path: $path)
+                    case .profile:
+                        ProfileView(path: $path)
                     }
                 }
         }

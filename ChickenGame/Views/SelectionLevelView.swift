@@ -143,6 +143,6 @@ struct SelectionLevelView: View {
     }
 }
 
-//#Preview {
-//    SelectionLevelView()
-//}
+#Preview {
+    AppNavigation()
+}

@@ -63,6 +63,6 @@ struct MainMenuView: View {
     }
 }
 
-//#Preview {
-//    MainMenuView(path: NavigationPath([Route.play]))
-//}
+#Preview {
+    AppNavigation()
+}
