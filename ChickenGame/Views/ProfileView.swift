@@ -46,6 +46,7 @@ struct ProfileView: View {
                                 .foregroundStyle(.white )
                                 .font(.largeTitle)
                                 .fontWeight(.black)
+                                .padding(.bottom, 80)
                             Button {
                                 
                             } label: {
@@ -67,6 +68,7 @@ struct ProfileView: View {
                                 .frame(width: width * 0.6)
                             CustomTextField(text: $email, placeholder: "EMAIL")
                                 .frame(width: width * 0.6)
+                                .padding(.bottom, 60)
                             
                         }
                         

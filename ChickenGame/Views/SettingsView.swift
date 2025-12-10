@@ -56,9 +56,9 @@ struct SettingsView: View {
                     
                     buttonView(imageName: "profileButton", route: .profile)
                         .frame(width: width * 0.4)
-                    buttonView(imageName: "settingsButton", route: .info)
+                    buttonView(imageName: "settingsButton", route: .settingsGame)
                         .frame(width: width * 0.4)
-                    buttonView(imageName: "leaderboardButton", route: .info)
+                    buttonView(imageName: "leaderboardButton", route: .leaderboard)
                         .frame(width: width * 0.4)
                     buttonView(imageName: "privacyPolicyButton", route: .info)
                         .frame(width: width * 0.4)
