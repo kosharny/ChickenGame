@@ -1,0 +1,9 @@
+# Файлы операционной системы macOS
+.DS_Store
+
+# Файлы, специфичные для пользователя Xcode
+*.xcuserdatad
+
+# Файлы, которые Xcode генерирует
+DerivedData/
+.build/
