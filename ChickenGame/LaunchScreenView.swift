@@ -6,11 +6,63 @@
 //
 
 import SwiftUI
+import Combine
 
 struct LaunchScreenView: View {
+    
+    @State private var progress: CGFloat = 0.0
+    @State private var displayedProgress = 0
+    
+    let timer = Timer.publish(every: 0.03, on: .main, in: .common).autoconnect()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            BackgraundView()
+            Image("chickenMain")
+                .resizable()
+                .scaledToFit()
+                .padding(.bottom, -200)
+            VStack {
+                Spacer()
+                ZStack {
+                    Image("launchFrame")
+                        .resizable()
+                        .scaledToFit()
+                    Image("launchFill")
+                        .resizable()
+                        .scaledToFit()
+                        .mask(
+                            GeometryReader { geo in
+                                Rectangle()
+                                    .frame(width: geo.size.width * progress)
+                            }
+                        )
+                    Text("\(displayedProgress)%")
+                        .foregroundStyle(.white )
+                        .font(.largeTitle)
+                        .fontWeight(.black)
+                }
+                .padding(20)
+                .onAppear {
+                    withAnimation(.linear(duration: 3)) {
+                        progress = 1
+                    }
+                }
+                .onReceive(timer) { _ in
+                    if displayedProgress < Int(progress * 100) {
+                        displayedProgress += 1
+                    }
+                }
+            }
+            .padding(.bottom, 40)
+        }
     }
+    
+//    private func startLoading() {
+//        withAnimation(.linear(duration: 3.0)) {
+//            progress = 1
+//        }
+//    }
 }
 
 #Preview {
