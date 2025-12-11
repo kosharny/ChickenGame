@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct LeaderboardView: View {
+    
+    @StateObject var playerViewModel: PlayerViewModel
     @Binding var path: NavigationPath
     
     var body: some View {
@@ -30,32 +32,26 @@ struct LeaderboardView: View {
                     }
                     .padding(.horizontal)
                     Spacer()
-                    
-                    Button {
-                        path.removeLast()
-                    } label: {
-                        Image("saveButton")
+                    VStack(alignment: .center) {
+                        Text("LEADERBOARD")
+                            .foregroundStyle(.white )
+                            .font(.largeTitle)
+                            .fontWeight(.black)
+                            .padding(.bottom, 40)
+                        
+                        ForEach(0...playerViewModel.player.scores.count, id: \.self) {_ in
+                            UserRecordsView(userName: playerViewModel.player.name, score: playerViewModel.player.scores.first ?? 0000)
+                                .frame(width: width * 0.8)
+                        }
+                    }
+                    .background(content: {
+                        Image("opacityBg")
                             .resizable()
-                            .frame(width: width * 0.5, height: height * 0.15)
-                    }
+                            .frame(width: width * 0.85, height: height * 0.75)
+                    })
+                    .frame(width: width * 0.85, height: height * 0.7)
+                    Spacer()
                 }
-                VStack(alignment: .center) {
-                    Text("LEADERBOARD")
-                        .foregroundStyle(.white )
-                        .font(.largeTitle)
-                        .fontWeight(.black)
-                        .padding(.bottom, 40)
-                    ForEach(0...5, id: \.self) {_ in
-                        UserRecordsView()
-                            .frame(width: width * 0.8)
-                    }
-                }
-                .background(content: {
-                    Image("opacityBg")
-                        .resizable()
-                        .frame(width: width * 0.85, height: height * 0.65)
-                })
-                .frame(width: width * 0.85, height: height * 0.6)
             }
         }
         .navigationBarBackButtonHidden()
@@ -63,6 +59,9 @@ struct LeaderboardView: View {
 }
 
 struct UserRecordsView: View {
+    var userName: String
+    var score: Int
+    
     var body: some View {
         GeometryReader { geo in
             let width = geo.size.width
@@ -72,13 +71,13 @@ struct UserRecordsView: View {
                     .scaledToFit()
                     .frame(width: width * 0.15)
                 Spacer()
-                Text("USERNAME")
+                Text(userName)
                     .foregroundStyle(.white )
                     .font(.title2)
                     .fontWeight(.black)
                 
                 Spacer()
-                Text("0000")
+                Text("\(score)")
                     .foregroundStyle(.white )
                     .font(.title2)
                     .fontWeight(.black)

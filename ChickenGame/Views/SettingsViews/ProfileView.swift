@@ -9,10 +9,9 @@ import SwiftUI
 
 struct ProfileView: View {
     
+    @StateObject var profileViewModel: ProfileViewModel
     @Binding var path: NavigationPath
     
-    @State private var username: String = "USERNAME"
-    @State private var email: String = "EMAIL"
     
     
     var body: some View {
@@ -64,9 +63,9 @@ struct ProfileView: View {
                                 }
                             }
                             
-                            CustomTextField(text: $username, placeholder: "USERNAME")
+                            CustomTextField(text: $profileViewModel.name, placeholder: "USERNAME")
                                 .frame(width: width * 0.6)
-                            CustomTextField(text: $email, placeholder: "EMAIL")
+                            CustomTextField(text: $profileViewModel.email, placeholder: "EMAIL")
                                 .frame(width: width * 0.6)
                                 .padding(.bottom, 60)
                             
@@ -74,6 +73,7 @@ struct ProfileView: View {
                         
                     }
                     Button {
+                        profileViewModel.saveProfile()
                         path.removeLast()
                     } label: {
                         Image("saveButton")

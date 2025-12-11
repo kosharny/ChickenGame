@@ -19,8 +19,8 @@ final class PlayerViewModel: ObservableObject {
     init(storage: PlayerStorage = UserDefaultsPlayerStorage()) {
         self.storage = storage
         self.player = storage.load() ?? PlayerData(
-            name: "username",
-            email: "email",
+            name: "USERNAME",
+            email: "EMAIL",
             settings: PlayerSettings(soundEnabled: true, notificationsEnabled: true, vibrationEnabled: true),
             scores: [],
             coins: 1000

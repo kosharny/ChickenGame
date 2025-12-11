@@ -12,10 +12,6 @@ struct SettingsGameView: View {
     @StateObject var settingsViewModel: SettingsViewModel
     @Binding var path: NavigationPath
     
-//    @State private var isSound: Bool = false
-//    @State private var isNotification: Bool = true
-//    @State private var isVibration: Bool = false
-    
     var body: some View {
         GeometryReader { geo in
             let width = geo.size.width

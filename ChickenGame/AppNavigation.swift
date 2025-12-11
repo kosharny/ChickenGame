@@ -39,11 +39,11 @@ struct AppNavigation: View {
                     case .settings:
                         SettingsView(path: $path)
                     case .profile:
-                        ProfileView(path: $path)
+                        ProfileView(profileViewModel: ProfileViewModel(playerVM: playerVM), path: $path)
                     case .settingsGame:
                         SettingsGameView(settingsViewModel: SettingsViewModel(playerVM: playerVM), path: $path)
                     case .leaderboard:
-                        LeaderboardView(path: $path)
+                        LeaderboardView(playerViewModel: playerVM, path: $path)
                     case .howToPlay:
                         HowToPlayView(path: $path)
                     case .termsOfUse:
