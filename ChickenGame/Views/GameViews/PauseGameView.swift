@@ -9,10 +9,12 @@ import SwiftUI
 
 struct PauseGameView: View {
     
+    
+    @StateObject var plaingGameViewModel: PlaingGameViewModel
     @Binding var path: NavigationPath
     
     var body: some View {
-        ResultGameView(path: $path, titleText: "PAUSED", isFinish: false, isLose: false, imageName: "playButton")
+        ResultGameView(plaingGameViewModel: plaingGameViewModel, path: $path, titleText: "PAUSED", isFinish: false, isLose: false, imageName: "playButton")
     }
 }
 

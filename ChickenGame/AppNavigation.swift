@@ -53,11 +53,11 @@ struct AppNavigation: View {
                     case .game:
                         GameView(plaingGameViewModel: PlaingGameViewModel(playerVM: playerVM, level: 1), path: $path)
                     case .pauseGame:
-                        PauseGameView(path: $path)
+                        PauseGameView(plaingGameViewModel: PlaingGameViewModel(playerVM: playerVM, level: 1), path: $path)
                     case .winGame:
-                        WinView(path: $path)
+                        WinView(plaingGameViewModel: PlaingGameViewModel(playerVM: playerVM, level: 1), path: $path)
                     case .loseGame:
-                        LoseView(path: $path)
+                        LoseView(plaingGameViewModel: PlaingGameViewModel(playerVM: playerVM, level: 1), path: $path)
                     }
                 }
         }

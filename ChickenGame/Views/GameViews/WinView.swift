@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct WinView: View {
+    
+    @StateObject var plaingGameViewModel: PlaingGameViewModel
     @Binding var path: NavigationPath
     
     var body: some View {
-        ResultGameView(path: $path, titleText: "YOU WIN!", isFinish: true, isLose: false, imageName: "nextButton")
+        ResultGameView(plaingGameViewModel: plaingGameViewModel, path: $path, titleText: "YOU WIN!", isFinish: true, isLose: false, imageName: "nextButton")
     }
 }
 

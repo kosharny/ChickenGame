@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct LoseView: View {
+    
+    
+    @StateObject var plaingGameViewModel: PlaingGameViewModel
     @Binding var path: NavigationPath
     
     var body: some View {
-        ResultGameView(path: $path, titleText: "YOU LOSE!", isFinish: true, isLose: true, imageName: "tryAgainButton")
+        ResultGameView(plaingGameViewModel: plaingGameViewModel, path: $path, titleText: "YOU LOSE!", isFinish: true, isLose: true, imageName: "tryAgainButton")
     }
 }
 

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ResultGameView: View {
     
+    
+    @StateObject var plaingGameViewModel: PlaingGameViewModel
     @Binding var path: NavigationPath
     
     let titleText: String
@@ -29,13 +31,14 @@ struct ResultGameView: View {
                         .font(.system(size: 80))
                         .fontWeight(.black)
                     if isFinish {
-                        ScoreView(titleText: "SCORE")
+                        ScoreView(titleText: "SCORE", scoreCount: plaingGameViewModel.playerVM.player.scores.first ?? 0000)
                             .frame(width: width * 0.85, height: height * 0.07)
-                        ScoreView(titleText: "BEST")
+                        ScoreView(titleText: "BEST", scoreCount: plaingGameViewModel.playerVM.player.scores.first ?? 0000)
                             .frame(width: width * 0.85, height: height * 0.07)
                     }
                     HStack {
                         Button {
+                            plaingGameViewModel.stopGame()
                             path.append(Route.menu)
                         } label: {
                             Text("HOME")
@@ -48,6 +51,7 @@ struct ResultGameView: View {
                         if !isLose {
                             Spacer()
                             Button {
+                                plaingGameViewModel.resetGame()
                                 path.append(Route.game)
                             } label: {
                                 Text("RESTART")
@@ -62,9 +66,13 @@ struct ResultGameView: View {
                     .padding(.horizontal, 40)
                     Button {
                         if isLose {
-                            path.append(Route.play)
-                        } else {
+                            plaingGameViewModel.resetGame()
+                            path.append(Route.game)
+                        } else if !isFinish {
+                            plaingGameViewModel.resumeGame()
                             path.removeLast()
+                        } else {
+                            path.append(Route.menu)
                         }
                     } label: {
                         Image(imageName)
@@ -88,6 +96,7 @@ struct ResultGameView: View {
 struct ScoreView: View {
     
     let titleText: String
+    let scoreCount: Int
     
     var body: some View {
         HStack {
@@ -96,7 +105,7 @@ struct ScoreView: View {
                 .font(.largeTitle)
                 .fontWeight(.black)
             Spacer()
-            Text("0000")
+            Text("\(scoreCount)")
                 .foregroundStyle(.white )
                 .font(.largeTitle)
                 .fontWeight(.black)
