@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct PlayerSettings: Codable {
+    var soundEnabled: Bool
+    var notificationsEnabled: Bool
+    var vibrationEnabled: Bool
+}

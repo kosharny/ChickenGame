@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+struct PlayerData: Codable {
+    var name: String
+    var email: String
+
+    var settings: PlayerSettings
+
+    var scores: [Int]             
+    var coins: Int
+}
