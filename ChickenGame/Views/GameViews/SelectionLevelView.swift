@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SelectionLevelView: View {
     
+    @StateObject var playerViewModel: PlayerViewModel
     @Binding var path: NavigationPath
     
     var body: some View {
@@ -26,9 +27,9 @@ struct SelectionLevelView: View {
                                 .scaledToFit()
                                 .frame(width: width * 0.2)
                         }
+                        
                         Spacer()
                         ZStack {
-    //                            CoinView()
                             Image("coinBg")
                                 .resizable()
                                 .scaledToFit()
@@ -38,9 +39,16 @@ struct SelectionLevelView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: width * 0.12)
-                                .padding(.trailing, -40)
+                                .padding(.trailing, -(width * 0.2))
+                            Text("\(playerViewModel.player.coins)")
+                                .foregroundStyle(.white )
+                                .font(.caption)
+                                .fontWeight(.black)
+                                .padding(.trailing, width * 0.14)
                         }
+                        .padding(.trailing, width * 0.3)
                     }
+//                    .frame(height: height * 0.1)
                     .padding(.horizontal)
                     Text("CHANGE LAVEL")
                         .foregroundStyle(.white )
@@ -50,7 +58,6 @@ struct SelectionLevelView: View {
                     Spacer()
                     
                     Grid(alignment: .leading, horizontalSpacing: 20) {
-                        
                         GridRow {
                             Button {
                                 path.append(Route.game)

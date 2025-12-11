@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GameView: View {
     
+    @StateObject var playerViewModel: PlayerViewModel
     @Binding var path: NavigationPath
     
     var body: some View {
@@ -31,6 +32,11 @@ struct GameView: View {
                                 .scaledToFit()
                                 .frame(width: width * 0.12)
                                 .padding(.trailing, -40)
+                            Text("\(playerViewModel.player.coins)")
+                                .foregroundStyle(.white )
+                                .font(.caption)
+                                .fontWeight(.black)
+                                .padding(.trailing, width * 0.14)
                         }
                         .padding(.trailing, 30)
                         Button {
