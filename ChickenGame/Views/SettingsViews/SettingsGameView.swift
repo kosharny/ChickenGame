@@ -9,11 +9,12 @@ import SwiftUI
 
 struct SettingsGameView: View {
     
+    @StateObject var settingsViewModel: SettingsViewModel
     @Binding var path: NavigationPath
     
-    @State private var isSound: Bool = false
-    @State private var isNotification: Bool = true
-    @State private var isVibration: Bool = false
+//    @State private var isSound: Bool = false
+//    @State private var isNotification: Bool = true
+//    @State private var isVibration: Bool = false
     
     var body: some View {
         GeometryReader { geo in
@@ -36,6 +37,7 @@ struct SettingsGameView: View {
                     .padding(.horizontal)
                     Spacer()
                     Button {
+                        settingsViewModel.save()
                         path.removeLast()
                     } label: {
                         Image("saveButton")
@@ -49,11 +51,11 @@ struct SettingsGameView: View {
                         .font(.largeTitle)
                         .fontWeight(.black)
                         .padding(.bottom, 40)
-                    CustomTogleView(isOn: $isSound, text: "SOUND")
+                    CustomTogleView(isOn: $settingsViewModel.settings.soundEnabled, text: "SOUND")
                         .padding(.bottom, 20)
-                    CustomTogleView(isOn: $isNotification, text: "NOTIFICATION")
+                    CustomTogleView(isOn: $settingsViewModel.settings.notificationsEnabled, text: "NOTIFICATION")
                         .padding(.bottom, 20)
-                    CustomTogleView(isOn: $isVibration, text: "VIBRATION")
+                    CustomTogleView(isOn: $settingsViewModel.settings.vibrationEnabled, text: "VIBRATION")
                         .padding(.bottom, 60)
                 }
                 .background(content: {

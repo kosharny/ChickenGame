@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct ChickenGameApp: App {
+    @StateObject var playerViewModel = PlayerViewModel()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(playerViewModel)
         }
     }
 }

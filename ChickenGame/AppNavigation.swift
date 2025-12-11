@@ -24,7 +24,7 @@ enum Route: Hashable {
 }
 
 struct AppNavigation: View {
-    
+    @EnvironmentObject var playerVM: PlayerViewModel
     @State private var path = NavigationPath()
     
     var body: some View {
@@ -41,7 +41,7 @@ struct AppNavigation: View {
                     case .profile:
                         ProfileView(path: $path)
                     case .settingsGame:
-                        SettingsGameView(path: $path)
+                        SettingsGameView(settingsViewModel: SettingsViewModel(playerVM: playerVM), path: $path)
                     case .leaderboard:
                         LeaderboardView(path: $path)
                     case .howToPlay:
