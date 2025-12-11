@@ -7,10 +7,20 @@
 
 import SwiftUI
 
+enum GameState {
+    case ready
+    case playing
+    case paused
+    case won
+    case lost
+}
+
 struct GameView: View {
     
-    @StateObject var playerViewModel: PlayerViewModel
+    @StateObject var plaingGameViewModel: PlaingGameViewModel
     @Binding var path: NavigationPath
+    
+    private let eggSize: CGFloat = 64
     
     var body: some View {
         GeometryReader { geo in
@@ -21,7 +31,6 @@ struct GameView: View {
                     HStack {
                         Spacer()
                         ZStack {
-//                            CoinView()
                             Image("coinBg")
                                 .resizable()
                                 .scaledToFit()
@@ -32,7 +41,7 @@ struct GameView: View {
                                 .scaledToFit()
                                 .frame(width: width * 0.12)
                                 .padding(.trailing, -40)
-                            Text("\(playerViewModel.player.coins)")
+                            Text("\(plaingGameViewModel.playerVM.player.coins)")
                                 .foregroundStyle(.white )
                                 .font(.caption)
                                 .fontWeight(.black)
@@ -40,6 +49,8 @@ struct GameView: View {
                         }
                         .padding(.trailing, 30)
                         Button {
+                            plaingGameViewModel.state = .paused
+                            plaingGameViewModel.pauseGame()
                             path.append(Route.pauseGame)
                         } label: {
                             Image("pouseButton")
@@ -51,10 +62,49 @@ struct GameView: View {
                     }
                     .padding(.trailing)
                     Spacer()
+                    ForEach(plaingGameViewModel.eggs) { egg in
+                        EggView()
+                            .frame(width: eggSize, height: eggSize)
+                            .position(x: egg.x * geo.size.width, y: egg.y * geo.size.height)
+                            .onTapGesture {
+                                plaingGameViewModel.tapEgg(egg)
+                            }
+                            .transition(.scale)
+                            .animation(.easeInOut, value: plaingGameViewModel.eggs)
+                    }
+                    HStack(spacing: 10) {
+                        ForEach(0..<3) { idx in
+                            Image("heart")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 32, height: 32)
+                                .opacity(idx < plaingGameViewModel.lives ? 1 : 0.25)
+                        }
+                    }
+                    .padding(.vertical, 12)
                 }
             }
             .navigationBarBackButtonHidden()
+            .onAppear {
+                plaingGameViewModel.startGame()
+            }
+            .onChange(of: plaingGameViewModel.state) { _, newValue in
+                if newValue == .won {
+                    path.append(Route.winGame)
+                } else if newValue == .lost {
+                    path.append(Route.loseGame)
+                }
+            }
         }
+    }
+}
+
+struct EggView: View {
+    var body: some View {
+        Image("egg")
+            .resizable()
+            .scaledToFit()
+            .shadow(radius: 3)
     }
 }
 
