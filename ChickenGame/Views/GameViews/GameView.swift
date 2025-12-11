@@ -20,6 +20,7 @@ struct GameView: View {
                     HStack {
                         Spacer()
                         ZStack {
+//                            CoinView()
                             Image("coinBg")
                                 .resizable()
                                 .scaledToFit()

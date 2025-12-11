@@ -28,6 +28,7 @@ struct SelectionLevelView: View {
                         }
                         Spacer()
                         ZStack {
+    //                            CoinView()
                             Image("coinBg")
                                 .resizable()
                                 .scaledToFit()
