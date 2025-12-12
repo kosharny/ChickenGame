@@ -25,6 +25,13 @@ struct GameView: View {
     var body: some View {
         GeometryReader { geo in
             let width = geo.size.width
+            Color.clear
+                .onAppear {
+                    plaingGameViewModel.gameFieldSize = geo.size
+                }
+                .onChange(of: geo.size) { _, newValue in
+                    plaingGameViewModel.gameFieldSize = newValue
+                }
             ZStack {
                 GameBackgroundView()
                 VStack {
@@ -41,7 +48,7 @@ struct GameView: View {
                                 .scaledToFit()
                                 .frame(width: width * 0.12)
                                 .padding(.trailing, -40)
-                            Text("\(plaingGameViewModel.playerVM.player.coins)")
+                            Text("\(plaingGameViewModel.coinsGame)")
                                 .foregroundStyle(.white )
                                 .font(.caption)
                                 .fontWeight(.black)

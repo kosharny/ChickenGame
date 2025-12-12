@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WinView: View {
     
-    @StateObject var plaingGameViewModel: PlaingGameViewModel
+    @ObservedObject var plaingGameViewModel: PlaingGameViewModel
     @Binding var path: NavigationPath
     
     var body: some View {

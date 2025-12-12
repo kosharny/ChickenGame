@@ -9,8 +9,13 @@ import SwiftUI
 
 struct LeaderboardView: View {
     
-    @StateObject var playerViewModel: PlayerViewModel
+    @ObservedObject var playerViewModel: PlayerViewModel
     @Binding var path: NavigationPath
+    
+    var sortedScores: [Int] {
+        playerViewModel.player.scores
+            .sorted(by: >)
+    }
     
     var body: some View {
         GeometryReader { geo in
@@ -38,11 +43,17 @@ struct LeaderboardView: View {
                             .font(.largeTitle)
                             .fontWeight(.black)
                             .padding(.bottom, 40)
-                        
-                        ForEach(0...playerViewModel.player.scores.count, id: \.self) {_ in
-                            UserRecordsView(userName: playerViewModel.player.name, score: playerViewModel.player.scores.first ?? 0000)
-                                .frame(width: width * 0.8)
+                        List {
+                            ForEach(sortedScores, id: \.self) { score in
+                                UserRecordsView(userName: playerViewModel.player.name, score: score)
+                                    .frame(width: width * 0.8, height: height * 0.05)
+                                    .listRowBackground(Color.clear)
+                                    .listRowSeparator(.hidden)
+                            }
                         }
+                        .listStyle(.plain)
+                        .scrollContentBackground(.hidden)
+                        .background(.clear)
                     }
                     .background(content: {
                         Image("opacityBg")

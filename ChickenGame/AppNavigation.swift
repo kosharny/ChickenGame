@@ -51,13 +51,13 @@ struct AppNavigation: View {
                     case .privatePolicy:
                         PrivatePolicyView(path: $path)
                     case .game:
-                        GameView(plaingGameViewModel: PlaingGameViewModel(playerVM: playerVM, level: 1), path: $path)
+                        GameView(plaingGameViewModel: PlaingGameViewModel(playerVM: playerVM, level: 3), path: $path)
                     case .pauseGame:
                         PauseGameView(plaingGameViewModel: PlaingGameViewModel(playerVM: playerVM, level: 1), path: $path)
                     case .winGame:
-                        WinView(plaingGameViewModel: PlaingGameViewModel(playerVM: playerVM, level: 1), path: $path)
+                        WinView(plaingGameViewModel: PlaingGameViewModel(playerVM: playerVM, level: 3), path: $path)
                     case .loseGame:
-                        LoseView(plaingGameViewModel: PlaingGameViewModel(playerVM: playerVM, level: 1), path: $path)
+                        LoseView(plaingGameViewModel: PlaingGameViewModel(playerVM: playerVM, level: 3), path: $path)
                     }
                 }
         }

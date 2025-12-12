@@ -10,7 +10,7 @@ import SwiftUI
 struct ResultGameView: View {
     
     
-    @StateObject var plaingGameViewModel: PlaingGameViewModel
+    @ObservedObject var plaingGameViewModel: PlaingGameViewModel
     @Binding var path: NavigationPath
     
     let titleText: String
@@ -31,7 +31,7 @@ struct ResultGameView: View {
                         .font(.system(size: 80))
                         .fontWeight(.black)
                     if isFinish {
-                        ScoreView(titleText: "SCORE", scoreCount: plaingGameViewModel.playerVM.player.scores.first ?? 0000)
+                        ScoreView(titleText: "SCORE", scoreCount: !isLose ? plaingGameViewModel.playerVM.player.scores.last ?? 0000 : 0000)
                             .frame(width: width * 0.85, height: height * 0.07)
                         ScoreView(titleText: "BEST", scoreCount: plaingGameViewModel.playerVM.player.scores.first ?? 0000)
                             .frame(width: width * 0.85, height: height * 0.07)
