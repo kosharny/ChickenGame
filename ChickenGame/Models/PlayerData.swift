@@ -15,4 +15,5 @@ struct PlayerData: Codable {
 
     var scores: [Int]             
     var coins: Int
+    var level = 1
 }

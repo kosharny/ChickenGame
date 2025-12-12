@@ -51,6 +51,11 @@ final class PlayerViewModel: ObservableObject {
         player.coins += amount
         save()
     }
+    
+    func nextLavel() {
+        player.level += 1
+        save()
+    }
 
     func spendCoins(_ amount: Int) {
         player.coins = max(0, player.coins - amount)

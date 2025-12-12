@@ -130,6 +130,9 @@ final class PlaingGameViewModel: ObservableObject {
             invalidateTimers()
             state = (lives > 0) ? .won : .lost
             if state == .won {
+                if playerVM.player.level == level {
+                    playerVM.nextLavel()
+                }
                 playerVM.addCoins(coinsGame)
                 playerVM.addScore(coinsGame)
             } else if state == .lost {

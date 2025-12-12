@@ -12,6 +12,8 @@ struct SelectionLevelView: View {
     @ObservedObject var plaingGameViewModel: PlaingGameViewModel
     @Binding var path: NavigationPath
     
+    let playerLavel = 2
+    
     var body: some View {
         GeometryReader { geo in
             let width = geo.size.width
@@ -60,7 +62,6 @@ struct SelectionLevelView: View {
                         GridRow {
                             Button {
                                 plaingGameViewModel.changeLevel(1)
-//                                plaingGameViewModel.state = .playing
                                 path.append(Route.game)
                             } label: {
                                 levaelView(lavel: 1)
@@ -68,20 +69,20 @@ struct SelectionLevelView: View {
                             
                             Button {
                                 plaingGameViewModel.changeLevel(2)
-//                                plaingGameViewModel.state = .playing
                                 path.append(Route.game)
                             } label: {
                                 levaelView(lavel: 2)
                             }
-                            
+                            .disabled(plaingGameViewModel.playerVM.player.level >= 2 ? false : true)
+                            .grayscale(plaingGameViewModel.playerVM.player.level >= 2 ? 0 : 1)
                             Button {
                                 plaingGameViewModel.changeLevel(3)
-//                                plaingGameViewModel.state = .playing
                                 path.append(Route.game)
                             } label: {
                                 levaelView(lavel: 3)
-                                    .grayscale(1)
                             }
+                            .disabled(plaingGameViewModel.playerVM.player.level >= 3 ? false : true)
+                            .grayscale(plaingGameViewModel.playerVM.player.level >= 3 ? 0 : 1)
                         }
                         
                         GridRow {
@@ -90,24 +91,27 @@ struct SelectionLevelView: View {
                                 path.append(Route.game)
                             } label: {
                                 levaelView(lavel: 4)
-                                    .grayscale(1)
                             }
+                            .disabled(plaingGameViewModel.playerVM.player.level >= 4 ? false : true)
+                            .grayscale(plaingGameViewModel.playerVM.player.level >= 4 ? 0 : 1)
                             
                             Button {
                                 plaingGameViewModel.changeLevel(5)
                                 path.append(Route.game)
                             } label: {
                                 levaelView(lavel: 5)
-                                    .grayscale(1)
                             }
+                            .disabled(plaingGameViewModel.playerVM.player.level >= 5 ? false : true)
+                            .grayscale(plaingGameViewModel.playerVM.player.level >= 5 ? 0 : 1)
                             
                             Button {
                                 plaingGameViewModel.changeLevel(6)
                                 path.append(Route.game)
                             } label: {
                                 levaelView(lavel: 6)
-                                    .grayscale(1)
                             }
+                            .disabled(plaingGameViewModel.playerVM.player.level >= 6 ? false : true)
+                            .grayscale(plaingGameViewModel.playerVM.player.level >= 6 ? 0 : 1)
                         }
                         
                         GridRow {
@@ -116,24 +120,27 @@ struct SelectionLevelView: View {
                                 path.append(Route.game)
                             } label: {
                                 levaelView(lavel: 7)
-                                    .grayscale(1)
                             }
+                            .disabled(plaingGameViewModel.playerVM.player.level >= 7 ? false : true)
+                            .grayscale(plaingGameViewModel.playerVM.player.level >= 7 ? 0 : 1)
                             
                             Button {
                                 plaingGameViewModel.changeLevel(8)
                                 path.append(Route.game)
                             } label: {
                                 levaelView(lavel: 8)
-                                    .grayscale(1)
                             }
+                            .disabled(plaingGameViewModel.playerVM.player.level >= 8 ? false : true)
+                            .grayscale(plaingGameViewModel.playerVM.player.level >= 8 ? 0 : 1)
                             
                             Button {
                                 plaingGameViewModel.changeLevel(9)
                                 path.append(Route.game)
                             } label: {
                                 levaelView(lavel: 9)
-                                    .grayscale(1)
                             }
+                            .disabled(plaingGameViewModel.playerVM.player.level >= 9 ? false : true)
+                            .grayscale(plaingGameViewModel.playerVM.player.level >= 9 ? 0 : 1)
                         }
                     }
                     .padding()
