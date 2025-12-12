@@ -27,11 +27,11 @@ final class PlaingGameViewModel: ObservableObject {
     private var eggLifeTime: TimeInterval = 3.0
     private var timeSinceLastSpawn: TimeInterval = 0
     
-    let level: Int
+    var level: Int
     
     let playerVM: PlayerViewModel
     
-    private let totalGameDuration: Int = 60
+    private let totalGameDuration: Int = 10
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -39,6 +39,14 @@ final class PlaingGameViewModel: ObservableObject {
         self.playerVM = playerVM
         self.level = max(1, min(9, level))
         configureForLevel(self.level)
+        resetGame()
+    }
+    
+    func changeLevel(_ newLevel: Int) {
+        let clamped = max(1, min(9, newLevel))
+        guard clamped != level else { return }
+        level = clamped
+        configureForLevel(level)
         resetGame()
     }
     
@@ -52,7 +60,6 @@ final class PlaingGameViewModel: ObservableObject {
         spawnInterval = maxSpawn - (maxSpawn - minSpawn) * t
         eggLifeTime = maxLife - (maxLife - minLife) * t
     }
-    
     
     func resetGame() {
         eggs.removeAll()

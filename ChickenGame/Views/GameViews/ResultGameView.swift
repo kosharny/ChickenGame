@@ -13,6 +13,11 @@ struct ResultGameView: View {
     @ObservedObject var plaingGameViewModel: PlaingGameViewModel
     @Binding var path: NavigationPath
     
+    var sortedScores: [Int] {
+        plaingGameViewModel.playerVM.player.scores
+            .sorted(by: >)
+    }
+    
     let titleText: String
     let isFinish: Bool
     let isLose: Bool
@@ -33,7 +38,7 @@ struct ResultGameView: View {
                     if isFinish {
                         ScoreView(titleText: "SCORE", scoreCount: !isLose ? plaingGameViewModel.playerVM.player.scores.last ?? 0000 : 0000)
                             .frame(width: width * 0.85, height: height * 0.07)
-                        ScoreView(titleText: "BEST", scoreCount: plaingGameViewModel.playerVM.player.scores.first ?? 0000)
+                        ScoreView(titleText: "BEST", scoreCount: sortedScores.first ?? 0000)
                             .frame(width: width * 0.85, height: height * 0.07)
                     }
                     HStack {
@@ -72,7 +77,7 @@ struct ResultGameView: View {
                             plaingGameViewModel.resumeGame()
                             path.removeLast()
                         } else {
-                            path.append(Route.menu)
+                            path.append(Route.play)
                         }
                     } label: {
                         Image(imageName)

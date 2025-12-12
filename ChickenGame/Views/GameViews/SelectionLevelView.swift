@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SelectionLevelView: View {
     
-    @StateObject var plaingGameViewModel: PlaingGameViewModel
+    @ObservedObject var plaingGameViewModel: PlaingGameViewModel
     @Binding var path: NavigationPath
     
     var body: some View {
@@ -59,20 +59,25 @@ struct SelectionLevelView: View {
                     Grid(alignment: .leading, horizontalSpacing: 20) {
                         GridRow {
                             Button {
-                                plaingGameViewModel.state = .playing
+                                plaingGameViewModel.changeLevel(1)
+//                                plaingGameViewModel.state = .playing
                                 path.append(Route.game)
                             } label: {
                                 levaelView(lavel: 1)
                             }
                             
                             Button {
-                                
+                                plaingGameViewModel.changeLevel(2)
+//                                plaingGameViewModel.state = .playing
+                                path.append(Route.game)
                             } label: {
                                 levaelView(lavel: 2)
                             }
                             
                             Button {
-                                
+                                plaingGameViewModel.changeLevel(3)
+//                                plaingGameViewModel.state = .playing
+                                path.append(Route.game)
                             } label: {
                                 levaelView(lavel: 3)
                                     .grayscale(1)
@@ -81,21 +86,24 @@ struct SelectionLevelView: View {
                         
                         GridRow {
                             Button {
-                                
+                                plaingGameViewModel.changeLevel(4)
+                                path.append(Route.game)
                             } label: {
                                 levaelView(lavel: 4)
                                     .grayscale(1)
                             }
                             
                             Button {
-                                
+                                plaingGameViewModel.changeLevel(5)
+                                path.append(Route.game)
                             } label: {
                                 levaelView(lavel: 5)
                                     .grayscale(1)
                             }
                             
                             Button {
-                                
+                                plaingGameViewModel.changeLevel(6)
+                                path.append(Route.game)
                             } label: {
                                 levaelView(lavel: 6)
                                     .grayscale(1)
@@ -104,21 +112,24 @@ struct SelectionLevelView: View {
                         
                         GridRow {
                             Button {
-                                
+                                plaingGameViewModel.changeLevel(7)
+                                path.append(Route.game)
                             } label: {
                                 levaelView(lavel: 7)
                                     .grayscale(1)
                             }
                             
                             Button {
-                                
+                                plaingGameViewModel.changeLevel(8)
+                                path.append(Route.game)
                             } label: {
                                 levaelView(lavel: 8)
                                     .grayscale(1)
                             }
                             
                             Button {
-                                
+                                plaingGameViewModel.changeLevel(9)
+                                path.append(Route.game)
                             } label: {
                                 levaelView(lavel: 9)
                                     .grayscale(1)

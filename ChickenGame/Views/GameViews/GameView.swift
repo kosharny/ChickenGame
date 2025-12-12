@@ -17,7 +17,7 @@ enum GameState {
 
 struct GameView: View {
     
-    @StateObject var plaingGameViewModel: PlaingGameViewModel
+    @ObservedObject var plaingGameViewModel: PlaingGameViewModel
     @Binding var path: NavigationPath
     
     private let eggSize: CGFloat = 64

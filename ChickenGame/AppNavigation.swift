@@ -25,6 +25,8 @@ enum Route: Hashable {
 
 struct AppNavigation: View {
     @EnvironmentObject var playerVM: PlayerViewModel
+    @StateObject private var plaingGameViewModel = PlaingGameViewModel(playerVM: PlayerViewModel())
+    
     @State private var path = NavigationPath()
     
     var body: some View {
@@ -35,7 +37,7 @@ struct AppNavigation: View {
                     case .menu:
                         MainMenuView(path: $path)
                     case .play:
-                        SelectionLevelView(plaingGameViewModel:PlaingGameViewModel(playerVM: playerVM, level: 1), path: $path)
+                        SelectionLevelView(plaingGameViewModel:plaingGameViewModel, path: $path)
                     case .settings:
                         SettingsView(path: $path)
                     case .profile:
@@ -51,13 +53,13 @@ struct AppNavigation: View {
                     case .privatePolicy:
                         PrivatePolicyView(path: $path)
                     case .game:
-                        GameView(plaingGameViewModel: PlaingGameViewModel(playerVM: playerVM, level: 3), path: $path)
+                        GameView(plaingGameViewModel: plaingGameViewModel, path: $path)
                     case .pauseGame:
-                        PauseGameView(plaingGameViewModel: PlaingGameViewModel(playerVM: playerVM, level: 1), path: $path)
+                        PauseGameView(plaingGameViewModel: plaingGameViewModel, path: $path)
                     case .winGame:
-                        WinView(plaingGameViewModel: PlaingGameViewModel(playerVM: playerVM, level: 3), path: $path)
+                        WinView(plaingGameViewModel: plaingGameViewModel, path: $path)
                     case .loseGame:
-                        LoseView(plaingGameViewModel: PlaingGameViewModel(playerVM: playerVM, level: 3), path: $path)
+                        LoseView(plaingGameViewModel: plaingGameViewModel, path: $path)
                     }
                 }
         }
