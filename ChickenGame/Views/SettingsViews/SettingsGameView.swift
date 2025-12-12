@@ -35,6 +35,11 @@ struct SettingsGameView: View {
                     Button {
                         settingsViewModel.save()
                         path.removeLast()
+                        if settingsViewModel.settings.soundEnabled == false {
+                            SoundManager.instance.stopSound()
+                        } else {
+                            SoundManager.instance.playSound(soundName: "bg")
+                        }
                     } label: {
                         Image("saveButton")
                             .resizable()

@@ -22,6 +22,7 @@ struct SelectionLevelView: View {
                 VStack {
                     HStack {
                         Button {
+                            HapticManager.instance.impact(style: .light)
                             path.removeLast()
                         } label: {
                             Image("backButton")

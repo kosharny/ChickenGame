@@ -6,8 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		DDE8F32C2EEC46B60080229F /* bg.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DDE8F32A2EEC46B60080229F /* bg.mp3 */; };
+		DDE8F32D2EEC46B60080229F /* play.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DDE8F32B2EEC46B60080229F /* play.mp3 */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		DDBAC1B62EE7FBD700414961 /* ChickenGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChickenGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDE8F32A2EEC46B60080229F /* bg.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bg.mp3; sourceTree = "<group>"; };
+		DDE8F32B2EEC46B60080229F /* play.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = play.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -34,6 +41,8 @@
 			children = (
 				DDBAC1B82EE7FBD700414961 /* ChickenGame */,
 				DDBAC1B72EE7FBD700414961 /* Products */,
+				DDE8F32A2EEC46B60080229F /* bg.mp3 */,
+				DDE8F32B2EEC46B60080229F /* play.mp3 */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,6 +118,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDE8F32C2EEC46B60080229F /* bg.mp3 in Resources */,
+				DDE8F32D2EEC46B60080229F /* play.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -32,11 +32,11 @@ struct AppNavigation: View {
     
     var body: some View {
         NavigationStack(path: $path) {
-            MainMenuView(path: $path)
+            MainMenuView(playerViewModel: playerVM, path: $path)
                 .navigationDestination(for: Route.self) { route in
                     switch route {
                     case .menu:
-                        MainMenuView(path: $path)
+                        MainMenuView(playerViewModel: playerVM, path: $path)
                     case .play:
                         SelectionLevelView(playerViewModel: playerVM, plaingGameViewModel: plaingGameViewModel, path: $path)
                     case .settings:

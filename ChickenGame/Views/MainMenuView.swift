@@ -10,6 +10,9 @@ import SwiftUI
 
 
 struct MainMenuView: View {
+    
+    
+    @ObservedObject var playerViewModel: PlayerViewModel
     @Binding var path: NavigationPath
     
     var body: some View {
@@ -26,6 +29,7 @@ struct MainMenuView: View {
                 VStack{
                     HStack {
                         Button {
+                            HapticManager.instance.impact(style: .light)
                             path.append(Route.settings)
                         } label: {
                             Image("menuButton")
@@ -35,6 +39,7 @@ struct MainMenuView: View {
                         }
                         Spacer()
                         Button {
+                            HapticManager.instance.impact(style: .light)
                             path.append(Route.howToPlay)
                         } label: {
                             Image("infoButton")
@@ -48,6 +53,7 @@ struct MainMenuView: View {
                     Spacer()
                     
                     Button {
+                        HapticManager.instance.impact(style: .light)
                         path.append(Route.play)
                     } label: {
                         Image("playButton")
@@ -61,6 +67,11 @@ struct MainMenuView: View {
             }
         }
         .navigationBarBackButtonHidden()
+        .onAppear {
+            if playerViewModel.player.settings.soundEnabled == true {
+                SoundManager.instance.playSound(soundName: "bg")
+            }
+        }
     }
 }
 

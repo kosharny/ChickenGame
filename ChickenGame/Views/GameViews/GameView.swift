@@ -17,7 +17,6 @@ enum GameState {
 
 struct GameView: View {
     
-    
     @ObservedObject var playerViewModel: PlayerViewModel
     @ObservedObject var plaingGameViewModel: PlaingGameViewModel
     @Binding var path: NavigationPath
@@ -96,6 +95,9 @@ struct GameView: View {
             .navigationBarBackButtonHidden()
             .onAppear {
                 plaingGameViewModel.startGame()
+                if playerViewModel.player.settings.soundEnabled == true {
+                    SoundManager.instance.playSound(soundName: "play")
+                }
             }
             .onChange(of: plaingGameViewModel.state) { _, newValue in
                 if newValue == .won {
@@ -106,6 +108,9 @@ struct GameView: View {
                     path.append(Route.loseGame)
                     plaingGameViewModel.coinsGame = 0
                 }
+            }
+            .onTapGesture {
+                HapticManager.instance.impact(style: .light)
             }
         }
     }
