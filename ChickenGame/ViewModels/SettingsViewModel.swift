@@ -12,7 +12,7 @@ import Combine
 final class SettingsViewModel: ObservableObject {
     @Published var settings: PlayerSettings
 
-    private let playerVM: PlayerViewModel
+    let playerVM: PlayerViewModel
 
     init(playerVM: PlayerViewModel) {
         self.playerVM = playerVM

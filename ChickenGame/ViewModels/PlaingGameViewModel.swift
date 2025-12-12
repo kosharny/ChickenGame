@@ -31,6 +31,14 @@ final class PlaingGameViewModel: ObservableObject {
     
     let playerVM: PlayerViewModel
     
+    var currentSkin: String {
+        playerVM.player.eggImageName
+    }
+    
+    var coinAmount: Int {
+        playerVM.player.coins
+    }
+    
     private let totalGameDuration: Int = 10
     
     private var cancellables = Set<AnyCancellable>()
@@ -204,7 +212,6 @@ final class PlaingGameViewModel: ObservableObject {
     func tapEgg(_ egg: Egg) {
         guard state == .playing else { return }
         removeEgg(egg)
-        //        playerVM.addCoins(100)
         coinsGame += 100
     }
 }

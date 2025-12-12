@@ -57,6 +57,7 @@ struct ResultGameView: View {
                             Spacer()
                             Button {
                                 plaingGameViewModel.resetGame()
+                                plaingGameViewModel.coinsGame = 0
                                 path.append(Route.game)
                             } label: {
                                 Text("RESTART")

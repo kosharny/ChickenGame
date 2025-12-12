@@ -10,10 +10,12 @@ import Foundation
 struct PlayerData: Codable {
     var name: String
     var email: String
-
+    
     var settings: PlayerSettings
-
+    
     var scores: [Int]             
     var coins: Int
-    var level = 1
+    var level: Int
+    var eggImageName: String
+    var eggImageCollection: [String]
 }

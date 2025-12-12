@@ -12,12 +12,10 @@ struct SelectionLevelView: View {
     @ObservedObject var plaingGameViewModel: PlaingGameViewModel
     @Binding var path: NavigationPath
     
-    let playerLavel = 2
-    
     var body: some View {
         GeometryReader { geo in
             let width = geo.size.width
-            ZStack{
+            ZStack {
                 BackgraundView()
                 VStack {
                     HStack {
@@ -31,24 +29,28 @@ struct SelectionLevelView: View {
                         }
                         
                         Spacer()
-                        ZStack {
-                            Image("coinBg")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: width * 0.25)
-                                .padding(.trailing)
-                            Image("coin")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: width * 0.12)
-                                .padding(.trailing, -(width * 0.2))
-                            Text("\(plaingGameViewModel.playerVM.player.coins)")
-                                .foregroundStyle(.white )
-                                .font(.caption)
-                                .fontWeight(.black)
-                                .padding(.trailing, width * 0.14)
+                        Button {
+                            path.append(Route.shop)
+                        } label: {
+                            ZStack {
+                                Image("coinBg")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: width * 0.25)
+                                    .padding(.trailing)
+                                Image("coin")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: width * 0.12)
+                                    .padding(.trailing, -(width * 0.2))
+                                Text("\(plaingGameViewModel.coinAmount)")
+                                    .foregroundStyle(.white )
+                                    .font(.caption)
+                                    .fontWeight(.black)
+                                    .padding(.trailing, width * 0.14)
+                            }
+                            .padding(.trailing, width * 0.3)
                         }
-                        .padding(.trailing, width * 0.3)
                     }
                     .padding(.horizontal)
                     Text("CHANGE LAVEL")

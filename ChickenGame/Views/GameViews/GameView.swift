@@ -70,7 +70,7 @@ struct GameView: View {
                     .padding(.trailing)
                     Spacer()
                     ForEach(plaingGameViewModel.eggs) { egg in
-                        EggView()
+                        EggView(imageName: plaingGameViewModel.currentSkin)
                             .frame(width: eggSize, height: eggSize)
                             .position(x: egg.x * geo.size.width, y: egg.y * geo.size.height)
                             .onTapGesture {
@@ -98,8 +98,11 @@ struct GameView: View {
             .onChange(of: plaingGameViewModel.state) { _, newValue in
                 if newValue == .won {
                     path.append(Route.winGame)
+                    plaingGameViewModel.coinsGame = 0
+                    plaingGameViewModel.resetGame()
                 } else if newValue == .lost {
                     path.append(Route.loseGame)
+                    plaingGameViewModel.coinsGame = 0
                 }
             }
         }
@@ -107,8 +110,11 @@ struct GameView: View {
 }
 
 struct EggView: View {
+    
+    let imageName: String
+    
     var body: some View {
-        Image("egg")
+        Image(imageName)
             .resizable()
             .scaledToFit()
             .shadow(radius: 3)

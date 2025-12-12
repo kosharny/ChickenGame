@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     
+    @ObservedObject var settingsViewModel: SettingsViewModel
     @Binding var path: NavigationPath
     
     var body: some View {
@@ -28,17 +29,26 @@ struct SettingsView: View {
                                 .frame(width: width * 0.2)
                         }
                         Spacer()
-                        ZStack {
-                            Image("coinBg")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: width * 0.25)
-                                .padding(.trailing)
-                            Image("coin")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: width * 0.12)
-                                .padding(.trailing, -40)
+                        Button {
+                            path.append(Route.shop)
+                        } label: {
+                            ZStack {
+                                Image("coinBg")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: width * 0.25)
+                                    .padding(.trailing)
+                                Image("coin")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: width * 0.12)
+                                    .padding(.trailing, -(width * 0.2))
+                                Text("\(settingsViewModel.playerVM.player.coins)")
+                                    .foregroundStyle(.white )
+                                    .font(.caption)
+                                    .fontWeight(.black)
+                                    .padding(.trailing, width * 0.14)
+                            }
                         }
                     }
                     .padding(.horizontal)
