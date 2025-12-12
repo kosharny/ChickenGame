@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SelectionLevelView: View {
     
+    
+    @ObservedObject var playerViewModel: PlayerViewModel
     @ObservedObject var plaingGameViewModel: PlaingGameViewModel
     @Binding var path: NavigationPath
     
@@ -43,7 +45,7 @@ struct SelectionLevelView: View {
                                     .scaledToFit()
                                     .frame(width: width * 0.12)
                                     .padding(.trailing, -(width * 0.2))
-                                Text("\(plaingGameViewModel.coinAmount)")
+                                Text("\(playerViewModel.player.coins)")
                                     .foregroundStyle(.white )
                                     .font(.caption)
                                     .fontWeight(.black)

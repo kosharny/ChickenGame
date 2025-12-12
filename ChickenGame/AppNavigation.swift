@@ -38,7 +38,7 @@ struct AppNavigation: View {
                     case .menu:
                         MainMenuView(path: $path)
                     case .play:
-                        SelectionLevelView(plaingGameViewModel: plaingGameViewModel, path: $path)
+                        SelectionLevelView(playerViewModel: playerVM, plaingGameViewModel: plaingGameViewModel, path: $path)
                     case .settings:
                         SettingsView(settingsViewModel: SettingsViewModel(playerVM: playerVM), path: $path)
                     case .profile:
@@ -54,7 +54,7 @@ struct AppNavigation: View {
                     case .privatePolicy:
                         PrivatePolicyView(path: $path)
                     case .game:
-                        GameView(plaingGameViewModel: plaingGameViewModel, path: $path)
+                        GameView(playerViewModel: playerVM, plaingGameViewModel: plaingGameViewModel, path: $path)
                     case .pauseGame:
                         PauseGameView(plaingGameViewModel: plaingGameViewModel, path: $path)
                     case .winGame:

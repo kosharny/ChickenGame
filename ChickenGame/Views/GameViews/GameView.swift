@@ -17,6 +17,8 @@ enum GameState {
 
 struct GameView: View {
     
+    
+    @ObservedObject var playerViewModel: PlayerViewModel
     @ObservedObject var plaingGameViewModel: PlaingGameViewModel
     @Binding var path: NavigationPath
     
@@ -70,7 +72,7 @@ struct GameView: View {
                     .padding(.trailing)
                     Spacer()
                     ForEach(plaingGameViewModel.eggs) { egg in
-                        EggView(imageName: plaingGameViewModel.currentSkin)
+                        EggView(imageName: playerViewModel.player.eggImageName)
                             .frame(width: eggSize, height: eggSize)
                             .position(x: egg.x * geo.size.width, y: egg.y * geo.size.height)
                             .onTapGesture {
