@@ -43,6 +43,9 @@ struct ResultGameView: View {
                     }
                     HStack {
                         Button {
+                            if plaingGameViewModel.playerVM.player.settings.vibrationEnabled == true {
+                                HapticManager.instance.impact(style: .light)
+                            }
                             plaingGameViewModel.stopGame()
                             path.append(Route.menu)
                         } label: {
@@ -56,6 +59,9 @@ struct ResultGameView: View {
                         if !isLose {
                             Spacer()
                             Button {
+                                if plaingGameViewModel.playerVM.player.settings.vibrationEnabled == true {
+                                    HapticManager.instance.impact(style: .light)
+                                }
                                 plaingGameViewModel.resetGame()
                                 plaingGameViewModel.coinsGame = 0
                                 path.append(Route.game)
@@ -71,6 +77,9 @@ struct ResultGameView: View {
                     }
                     .padding(.horizontal, 40)
                     Button {
+                        if plaingGameViewModel.playerVM.player.settings.vibrationEnabled == true {
+                            HapticManager.instance.impact(style: .light)
+                        }
                         if isLose {
                             plaingGameViewModel.resetGame()
                             path.append(Route.game)

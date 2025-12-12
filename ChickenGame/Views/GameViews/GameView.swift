@@ -57,6 +57,9 @@ struct GameView: View {
                         }
                         .padding(.trailing, 30)
                         Button {
+                            if playerViewModel.player.settings.vibrationEnabled == true {
+                                HapticManager.instance.impact(style: .light)
+                            }
                             plaingGameViewModel.state = .paused
                             plaingGameViewModel.pauseGame()
                             path.append(Route.pauseGame)
@@ -79,6 +82,9 @@ struct GameView: View {
                             }
                             .transition(.scale)
                             .animation(.easeInOut, value: plaingGameViewModel.eggs)
+                            .onTapGesture {
+                                HapticManager.instance.impact(style: .light)
+                            }
                     }
                     HStack(spacing: 10) {
                         ForEach(0..<3) { idx in
@@ -108,9 +114,6 @@ struct GameView: View {
                     path.append(Route.loseGame)
                     plaingGameViewModel.coinsGame = 0
                 }
-            }
-            .onTapGesture {
-                HapticManager.instance.impact(style: .light)
             }
         }
     }

@@ -21,6 +21,9 @@ struct ShopView: View {
                 VStack {
                     HStack {
                         Button {
+                            if playerViewModel.player.settings.vibrationEnabled == true {
+                                HapticManager.instance.impact(style: .light)
+                            }
                             path.removeLast()
                         } label: {
                             Image("backButton")
@@ -127,6 +130,9 @@ struct shopEggButton: View {
     
     var body: some View {
         Button {
+            if playerViewModel.player.settings.vibrationEnabled == true {
+                HapticManager.instance.impact(style: .light)
+            }
             if isPurchased {
                 playerViewModel.updateEggImage(imageName, cost: 0)
             }

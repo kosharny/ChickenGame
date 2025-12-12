@@ -26,6 +26,9 @@ struct LeaderboardView: View {
                 VStack {
                     HStack {
                         Button {
+                            if playerViewModel.player.settings.vibrationEnabled == true {
+                                HapticManager.instance.impact(style: .light)
+                            }
                             path.removeLast()
                         } label: {
                             Image("backButton")

@@ -21,6 +21,9 @@ struct SettingsGameView: View {
                 VStack {
                     HStack {
                         Button {
+                            if settingsViewModel.settings.vibrationEnabled == true {
+                                HapticManager.instance.impact(style: .light)
+                            }
                             path.removeLast()
                         } label: {
                             Image("backButton")
@@ -33,6 +36,9 @@ struct SettingsGameView: View {
                     .padding(.horizontal)
                     Spacer()
                     Button {
+                        if settingsViewModel.settings.vibrationEnabled == true {
+                            HapticManager.instance.impact(style: .light)
+                        }
                         settingsViewModel.save()
                         path.removeLast()
                         if settingsViewModel.settings.soundEnabled == false {

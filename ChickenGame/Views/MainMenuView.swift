@@ -29,7 +29,9 @@ struct MainMenuView: View {
                 VStack{
                     HStack {
                         Button {
-                            HapticManager.instance.impact(style: .light)
+                            if playerViewModel.player.settings.vibrationEnabled == true {
+                                HapticManager.instance.impact(style: .light)
+                            }
                             path.append(Route.settings)
                         } label: {
                             Image("menuButton")
@@ -39,7 +41,9 @@ struct MainMenuView: View {
                         }
                         Spacer()
                         Button {
-                            HapticManager.instance.impact(style: .light)
+                            if playerViewModel.player.settings.vibrationEnabled == true {
+                                HapticManager.instance.impact(style: .light)
+                            }
                             path.append(Route.howToPlay)
                         } label: {
                             Image("infoButton")
@@ -53,7 +57,9 @@ struct MainMenuView: View {
                     Spacer()
                     
                     Button {
-                        HapticManager.instance.impact(style: .light)
+                        if playerViewModel.player.settings.vibrationEnabled == true {
+                            HapticManager.instance.impact(style: .light)
+                        }
                         path.append(Route.play)
                     } label: {
                         Image("playButton")

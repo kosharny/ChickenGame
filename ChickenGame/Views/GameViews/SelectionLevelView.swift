@@ -33,6 +33,9 @@ struct SelectionLevelView: View {
                         
                         Spacer()
                         Button {
+                            if playerViewModel.player.settings.vibrationEnabled == true {
+                                HapticManager.instance.impact(style: .light)
+                            }
                             path.append(Route.shop)
                         } label: {
                             ZStack {
@@ -66,6 +69,9 @@ struct SelectionLevelView: View {
                     Grid(alignment: .leading, horizontalSpacing: 20) {
                         GridRow {
                             Button {
+                                if playerViewModel.player.settings.vibrationEnabled == true {
+                                    HapticManager.instance.impact(style: .light)
+                                }
                                 plaingGameViewModel.changeLevel(1)
                                 path.append(Route.game)
                             } label: {
@@ -73,6 +79,9 @@ struct SelectionLevelView: View {
                             }
                             
                             Button {
+                                if playerViewModel.player.settings.vibrationEnabled == true {
+                                    HapticManager.instance.impact(style: .light)
+                                }
                                 plaingGameViewModel.changeLevel(2)
                                 path.append(Route.game)
                             } label: {
@@ -81,6 +90,9 @@ struct SelectionLevelView: View {
                             .disabled(plaingGameViewModel.playerVM.player.level >= 2 ? false : true)
                             .grayscale(plaingGameViewModel.playerVM.player.level >= 2 ? 0 : 1)
                             Button {
+                                if playerViewModel.player.settings.vibrationEnabled == true {
+                                    HapticManager.instance.impact(style: .light)
+                                }
                                 plaingGameViewModel.changeLevel(3)
                                 path.append(Route.game)
                             } label: {
@@ -92,6 +104,9 @@ struct SelectionLevelView: View {
                         
                         GridRow {
                             Button {
+                                if playerViewModel.player.settings.vibrationEnabled == true {
+                                    HapticManager.instance.impact(style: .light)
+                                }
                                 plaingGameViewModel.changeLevel(4)
                                 path.append(Route.game)
                             } label: {
@@ -101,6 +116,9 @@ struct SelectionLevelView: View {
                             .grayscale(plaingGameViewModel.playerVM.player.level >= 4 ? 0 : 1)
                             
                             Button {
+                                if playerViewModel.player.settings.vibrationEnabled == true {
+                                    HapticManager.instance.impact(style: .light)
+                                }
                                 plaingGameViewModel.changeLevel(5)
                                 path.append(Route.game)
                             } label: {
@@ -110,6 +128,9 @@ struct SelectionLevelView: View {
                             .grayscale(plaingGameViewModel.playerVM.player.level >= 5 ? 0 : 1)
                             
                             Button {
+                                if playerViewModel.player.settings.vibrationEnabled == true {
+                                    HapticManager.instance.impact(style: .light)
+                                }
                                 plaingGameViewModel.changeLevel(6)
                                 path.append(Route.game)
                             } label: {
@@ -121,6 +142,9 @@ struct SelectionLevelView: View {
                         
                         GridRow {
                             Button {
+                                if playerViewModel.player.settings.vibrationEnabled == true {
+                                    HapticManager.instance.impact(style: .light)
+                                }
                                 plaingGameViewModel.changeLevel(7)
                                 path.append(Route.game)
                             } label: {
@@ -130,6 +154,9 @@ struct SelectionLevelView: View {
                             .grayscale(plaingGameViewModel.playerVM.player.level >= 7 ? 0 : 1)
                             
                             Button {
+                                if playerViewModel.player.settings.vibrationEnabled == true {
+                                    HapticManager.instance.impact(style: .light)
+                                }
                                 plaingGameViewModel.changeLevel(8)
                                 path.append(Route.game)
                             } label: {
@@ -139,6 +166,9 @@ struct SelectionLevelView: View {
                             .grayscale(plaingGameViewModel.playerVM.player.level >= 8 ? 0 : 1)
                             
                             Button {
+                                if playerViewModel.player.settings.vibrationEnabled == true {
+                                    HapticManager.instance.impact(style: .light)
+                                }
                                 plaingGameViewModel.changeLevel(9)
                                 path.append(Route.game)
                             } label: {

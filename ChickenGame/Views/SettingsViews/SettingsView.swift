@@ -21,6 +21,9 @@ struct SettingsView: View {
                 VStack {
                     HStack {
                         Button {
+                            if settingsViewModel.settings.vibrationEnabled == true {
+                                HapticManager.instance.impact(style: .light)
+                            }
                             path.removeLast()
                         } label: {
                             Image("backButton")
@@ -85,6 +88,9 @@ struct SettingsView: View {
     private func buttonView(imageName: String, route: Route) -> some View {
         var body: some View {
             Button {
+                if settingsViewModel.settings.vibrationEnabled == true {
+                    HapticManager.instance.impact(style: .light)
+                }
                 path.append(route)
             } label: {
                 Image(imageName)
