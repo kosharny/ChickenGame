@@ -22,7 +22,6 @@ final class PlaingGameViewModel: ObservableObject {
     @Published var coinsGame: Int = 0
     @Published var scores: [Int]
     @Published var settings: PlayerSettings
-    @Published var level: Int
     
     private var tickCancellable: AnyCancellable?
     private var lastTickDate: Date = Date()
@@ -31,7 +30,7 @@ final class PlaingGameViewModel: ObservableObject {
     private var eggLifeTime: TimeInterval = 3.0
     private var timeSinceLastSpawn: TimeInterval = 0
     
-//    var level: Int
+    var level: Int
     
     private let playerVM: PlayerViewModel
     
@@ -149,6 +148,7 @@ final class PlaingGameViewModel: ObservableObject {
                 }
                 playerVM.addCoins(coinsGame)
                 playerVM.addScore(coinsGame)
+                coinsGame = 0
             } else if state == .lost {
                 coinsGame = 0
             }
@@ -170,7 +170,7 @@ final class PlaingGameViewModel: ObservableObject {
         var new = eggs
         let egg = Egg(
             x: CGFloat(Double.random(in: 0.08...0.92)),
-            y: CGFloat(Double.random(in: 0.12...0.78)), // avoid top controls and bottom hearts
+            y: CGFloat(Double.random(in: 0.12...0.78)),
             spawnTime: now,
             lifeTime: eggLifeTime
         )

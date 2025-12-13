@@ -14,10 +14,6 @@ struct ResultGameView: View {
     @EnvironmentObject var playerViewModel: PlayerViewModel
     @Binding var path: NavigationPath
     
-    var sortedScores: [Int] {
-        playerViewModel.player.scores
-            .sorted(by: >)
-    }
     
     let titleText: String
     let isFinish: Bool
@@ -39,16 +35,13 @@ struct ResultGameView: View {
                     if isFinish {
                         ScoreView(titleText: "SCORE", scoreCount: !isLose ? playerViewModel.player.scores.last ?? 0000 : 0000)
                             .frame(width: width * 0.85, height: height * 0.07)
-                        ScoreView(titleText: "BEST", scoreCount: sortedScores.first ?? 0000)
+                        ScoreView(titleText: "BEST", scoreCount: playerViewModel.player.scores.max() ?? 0000)
                             .frame(width: width * 0.85, height: height * 0.07)
                     }
                     HStack {
                         Button {
                             if playerViewModel.player.settings.vibrationEnabled == true {
                                 HapticManager.instance.impact(style: .light)
-                            }
-                            if plaingGameViewModel.state == .won {
-                                playerViewModel.nextLavel()
                             }
                             plaingGameViewModel.stopGame()
                             path.append(Route.menu)
@@ -91,7 +84,6 @@ struct ResultGameView: View {
                             plaingGameViewModel.resumeGame()
                             path.removeLast()
                         } else {
-                            playerViewModel.nextLavel()
                             path.append(Route.play)
                         }
                     } label: {

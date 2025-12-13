@@ -26,7 +26,7 @@ final class PlayerViewModel: ObservableObject {
             coins: 1000000,
             level: 1,
             eggImageName: "egg",
-            eggImageCollection: ["egg"]
+            eggImageCollection: ["egg"],
         )
     }
     
@@ -67,12 +67,6 @@ final class PlayerViewModel: ObservableObject {
         }
         save()
     }
-    
-    
-//    func addEggImage(_ eggName: String) {
-//        player.eggImageCollection.append(eggName)
-//        save()
-//    }
     
     func addScore(_ score: Int) {
         player.scores.append(score)

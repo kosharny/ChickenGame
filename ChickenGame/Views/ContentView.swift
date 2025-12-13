@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
-//    @EnvironmentObject var playerViewModel: PlayerViewModel
+    @EnvironmentObject var playerViewModel: PlayerViewModel
     @State private var showMainView = false
     
     var body: some View {
         Group {
             if showMainView {
-                AppNavigation()
+                AppNavigation(playerVM: playerViewModel)
             } else {
                 LaunchScreenView()
             }
