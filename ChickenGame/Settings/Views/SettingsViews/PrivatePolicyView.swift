@@ -15,7 +15,3 @@ struct PrivatePolicyView: View {
         SettingsBgView(path: $path, title: titleText)
     }
 }
-
-#Preview {
-    AppNavigation()
-}

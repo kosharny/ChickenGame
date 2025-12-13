@@ -17,6 +17,3 @@ struct WinView: View {
     }
 }
 
-#Preview {
-    AppNavigation()
-}

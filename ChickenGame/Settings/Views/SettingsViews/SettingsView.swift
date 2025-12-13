@@ -102,6 +102,3 @@ struct SettingsView: View {
     }
 }
 
-#Preview {
-    AppNavigation()
-}

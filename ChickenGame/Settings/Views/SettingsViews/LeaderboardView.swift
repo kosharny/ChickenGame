@@ -105,6 +105,4 @@ struct UserRecordsView: View {
     }
 }
 
-#Preview {
-    AppNavigation()
-}
+

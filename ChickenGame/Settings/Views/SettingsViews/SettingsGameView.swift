@@ -96,6 +96,3 @@ struct CustomTogleView: View {
     }
 }
 
-#Preview {
-    AppNavigation()
-}

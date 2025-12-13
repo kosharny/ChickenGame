@@ -26,9 +26,9 @@ enum Route: Hashable {
 
 struct AppNavigation: View {
     @EnvironmentObject var playerVM: PlayerViewModel
-//    @StateObject private var plaingGameViewModel = PlaingGameViewModel(playerVM: PlayerViewModel())
     
     @State private var path = NavigationPath()
+    
     
     var body: some View {
         NavigationStack(path: $path) {
@@ -62,7 +62,7 @@ struct AppNavigation: View {
                     case .loseGame:
                         LoseView(plaingGameViewModel: PlaingGameViewModel(playerVM: playerVM), path: $path)
                     case .shop:
-                        ShopView(playerViewModel: playerVM, path: $path)
+                        ShopView(shopViewModel: ShopViewModel(playerVM: playerVM), path: $path)
                     }
                 }
         }
@@ -70,6 +70,3 @@ struct AppNavigation: View {
     }
 }
 
-#Preview {
-    AppNavigation()
-}

@@ -17,6 +17,3 @@ struct HowToPlayView: View {
     }
 }
 
-#Preview {
-    AppNavigation()
-}

@@ -22,7 +22,7 @@ final class PlaingGameViewModel: ObservableObject {
     @Published var coinsGame: Int = 0
     @Published var scores: [Int]
     @Published var settings: PlayerSettings
-    @Published var levelPlayer: Int
+    @Published var level: Int
     
     private var tickCancellable: AnyCancellable?
     private var lastTickDate: Date = Date()
@@ -31,7 +31,7 @@ final class PlaingGameViewModel: ObservableObject {
     private var eggLifeTime: TimeInterval = 3.0
     private var timeSinceLastSpawn: TimeInterval = 0
     
-    var level: Int
+//    var level: Int
     
     private let playerVM: PlayerViewModel
     
@@ -51,7 +51,6 @@ final class PlaingGameViewModel: ObservableObject {
         self.playerVM = playerVM
         self.scores = playerVM.player.scores
         self.settings = playerVM.player.settings
-        self.levelPlayer = playerVM.player.level
         self.level = max(1, min(9, level))
         configureForLevel(self.level)
         resetGame()

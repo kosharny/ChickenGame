@@ -17,6 +17,3 @@ struct PauseGameView: View {
     }
 }
 
-#Preview {
-    AppNavigation()
-}

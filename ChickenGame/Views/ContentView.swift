@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+//    @EnvironmentObject var playerViewModel: PlayerViewModel
     @State private var showMainView = false
     
     var body: some View {
@@ -28,6 +29,3 @@ struct ContentView: View {
     }
 }
 
-#Preview {
-    ContentView()
-}

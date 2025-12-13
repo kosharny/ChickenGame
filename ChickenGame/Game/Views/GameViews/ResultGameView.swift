@@ -47,6 +47,9 @@ struct ResultGameView: View {
                             if playerViewModel.player.settings.vibrationEnabled == true {
                                 HapticManager.instance.impact(style: .light)
                             }
+                            if plaingGameViewModel.state == .won {
+                                playerViewModel.nextLavel()
+                            }
                             plaingGameViewModel.stopGame()
                             path.append(Route.menu)
                         } label: {
@@ -88,6 +91,7 @@ struct ResultGameView: View {
                             plaingGameViewModel.resumeGame()
                             path.removeLast()
                         } else {
+                            playerViewModel.nextLavel()
                             path.append(Route.play)
                         }
                     } label: {
@@ -135,6 +139,3 @@ struct ScoreView: View {
     }
 }
 
-#Preview {
-    AppNavigation()
-}

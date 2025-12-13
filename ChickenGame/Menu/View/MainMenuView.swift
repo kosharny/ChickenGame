@@ -11,7 +11,6 @@ import SwiftUI
 
 struct MainMenuView: View {
     
-    
     @ObservedObject var playerViewModel: PlayerViewModel
     @Binding var path: NavigationPath
     
@@ -81,6 +80,3 @@ struct MainMenuView: View {
     }
 }
 
-#Preview {
-    AppNavigation()
-}

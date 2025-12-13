@@ -115,7 +115,3 @@ struct CustomTextField: View {
     }
 }
 
-#Preview {
-    AppNavigation()
-}
-

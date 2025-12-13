@@ -15,7 +15,3 @@ struct TermsOfUseView: View {
         SettingsBgView(path: $path, title: titleText)
     }
 }
-
-#Preview {
-    AppNavigation()
-}

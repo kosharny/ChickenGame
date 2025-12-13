@@ -16,7 +16,3 @@ struct LoseView: View {
         ResultGameView(plaingGameViewModel: plaingGameViewModel, path: $path, titleText: "YOU LOSE!", isFinish: true, isLose: true, imageName: "tryAgainButton")
     }
 }
-
-#Preview {
-    AppNavigation()
-}

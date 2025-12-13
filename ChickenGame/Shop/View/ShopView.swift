@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ShopView: View {
     
-    @ObservedObject var playerViewModel: PlayerViewModel
+    @ObservedObject var shopViewModel: ShopViewModel
     @Binding var path: NavigationPath
     
     var body: some View {
@@ -21,7 +21,7 @@ struct ShopView: View {
                 VStack {
                     HStack {
                         Button {
-                            if playerViewModel.player.settings.vibrationEnabled == true {
+                            if shopViewModel.vibrationEnabled == true {
                                 HapticManager.instance.impact(style: .light)
                             }
                             path.removeLast()
@@ -43,7 +43,7 @@ struct ShopView: View {
                                 .scaledToFit()
                                 .frame(width: width * 0.12)
                                 .padding(.trailing, -(width * 0.2))
-                            Text("\(playerViewModel.player.coins)")
+                            Text("\(shopViewModel.coins)")
                                 .foregroundStyle(.white )
                                 .font(.caption)
                                 .fontWeight(.black)
@@ -62,40 +62,40 @@ struct ShopView: View {
                                 .gridCellColumns(3)
                         }
                         GridRow {
-                            shopEggButton(playerViewModel: playerViewModel, imageName: "egg10", costEgg: 10000)
+                            shopEggButton(shopViewModel: shopViewModel, imageName: "egg10", costEgg: 10000)
                                 .frame(width: width * 0.2)
                             
-                            shopEggButton(playerViewModel: playerViewModel, imageName: "egg20", costEgg: 20000)
+                            shopEggButton(shopViewModel: shopViewModel, imageName: "egg20", costEgg: 20000)
                                 .frame(width: width * 0.2)
                             
-                            shopEggButton(playerViewModel: playerViewModel, imageName: "egg30", costEgg: 30000)
+                            shopEggButton(shopViewModel: shopViewModel, imageName: "egg30", costEgg: 30000)
                                 .frame(width: width * 0.2)
                         }
                         GridRow {
-                            shopEggButton(playerViewModel: playerViewModel, imageName: "egg50", costEgg: 50000)
+                            shopEggButton(shopViewModel: shopViewModel, imageName: "egg50", costEgg: 50000)
                                 .frame(width: width * 0.2)
                             
-                            shopEggButton(playerViewModel: playerViewModel, imageName: "egg100", costEgg: 100000)
+                            shopEggButton(shopViewModel: shopViewModel, imageName: "egg100", costEgg: 100000)
                                 .frame(width: width * 0.2)
                             
-                            shopEggButton(playerViewModel: playerViewModel, imageName: "egg150", costEgg: 150000)
+                            shopEggButton(shopViewModel: shopViewModel, imageName: "egg150", costEgg: 150000)
                                 .frame(width: width * 0.2)
                         }
                         GridRow {
-                            shopEggButton(playerViewModel: playerViewModel, imageName: "egg200", costEgg: 200000)
+                            shopEggButton(shopViewModel: shopViewModel, imageName: "egg200", costEgg: 200000)
                                 .frame(width: width * 0.2)
                             
-                            shopEggButton(playerViewModel: playerViewModel, imageName: "egg250", costEgg: 250000)
+                            shopEggButton(shopViewModel: shopViewModel, imageName: "egg250", costEgg: 250000)
                                 .frame(width: width * 0.2)
                             
-                            shopEggButton(playerViewModel: playerViewModel, imageName: "egg300", costEgg: 300000)
+                            shopEggButton(shopViewModel: shopViewModel, imageName: "egg300", costEgg: 300000)
                                 .frame(width: width * 0.2)
                         }
                         GridRow {
-                            shopEggButton(playerViewModel: playerViewModel, imageName: "egg500", costEgg: 500000)
+                            shopEggButton(shopViewModel: shopViewModel, imageName: "egg500", costEgg: 500000)
                                 .frame(width: width * 0.2)
                             
-                            shopEggButton(playerViewModel: playerViewModel, imageName: "egg1000", costEgg: 1000000)
+                            shopEggButton(shopViewModel: shopViewModel, imageName: "egg1000", costEgg: 1000000)
                                 .frame(width: width * 0.2)
                         }
                     }
@@ -116,28 +116,28 @@ struct ShopView: View {
 
 struct shopEggButton: View {
     
-    @ObservedObject var playerViewModel: PlayerViewModel
+    @ObservedObject var shopViewModel: ShopViewModel
     let imageName: String
     let costEgg: Int
     
     var isPurchased: Bool {
-        playerViewModel.player.eggImageCollection.contains(imageName)
+        shopViewModel.eggImageCollection.contains(imageName)
     }
     
     var canAfford: Bool {
-        playerViewModel.player.coins >= costEgg
+        shopViewModel.coins >= costEgg
     }
     
     var body: some View {
         Button {
-            if playerViewModel.player.settings.vibrationEnabled == true {
+            if shopViewModel.vibrationEnabled == true {
                 HapticManager.instance.impact(style: .light)
             }
             if isPurchased {
-                playerViewModel.updateEggImage(imageName, cost: 0)
+                shopViewModel.updateEggImage(imageName, cost: 0)
             }
             else if canAfford {
-                playerViewModel.updateEggImage(imageName, cost: costEgg)
+                shopViewModel.updateEggImage(imageName, cost: costEgg)
             }
         } label: {
             VStack {
