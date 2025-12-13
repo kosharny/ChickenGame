@@ -11,6 +11,7 @@ import Foundation
 import Combine
 import SwiftUI
 
+
 final class PlaingGameViewModel: ObservableObject {
     
     @Published private(set) var eggs: [Egg] = []
@@ -19,6 +20,9 @@ final class PlaingGameViewModel: ObservableObject {
     @Published var state: GameState = .ready
     @Published var gameFieldSize: CGSize = .zero
     @Published var coinsGame: Int = 0
+    @Published var scores: [Int]
+    @Published var settings: PlayerSettings
+    @Published var levelPlayer: Int
     
     private var tickCancellable: AnyCancellable?
     private var lastTickDate: Date = Date()
@@ -29,7 +33,7 @@ final class PlaingGameViewModel: ObservableObject {
     
     var level: Int
     
-    let playerVM: PlayerViewModel
+    private let playerVM: PlayerViewModel
     
     var currentSkin: String {
         playerVM.player.eggImageName
@@ -39,12 +43,15 @@ final class PlaingGameViewModel: ObservableObject {
         playerVM.player.coins
     }
     
-    private let totalGameDuration: Int = 60
+    private let totalGameDuration: Int = 20
     
     private var cancellables = Set<AnyCancellable>()
     
     init(playerVM: PlayerViewModel, level: Int = 1) {
         self.playerVM = playerVM
+        self.scores = playerVM.player.scores
+        self.settings = playerVM.player.settings
+        self.levelPlayer = playerVM.player.level
         self.level = max(1, min(9, level))
         configureForLevel(self.level)
         resetGame()

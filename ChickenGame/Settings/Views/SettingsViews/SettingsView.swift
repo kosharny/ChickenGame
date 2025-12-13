@@ -46,7 +46,7 @@ struct SettingsView: View {
                                     .scaledToFit()
                                     .frame(width: width * 0.12)
                                     .padding(.trailing, -(width * 0.2))
-                                Text("\(settingsViewModel.playerVM.player.coins)")
+                                Text("\(settingsViewModel.coins)")
                                     .foregroundStyle(.white )
                                     .font(.caption)
                                     .fontWeight(.black)

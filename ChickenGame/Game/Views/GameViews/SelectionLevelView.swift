@@ -10,7 +10,7 @@ import SwiftUI
 struct SelectionLevelView: View {
     
     
-    @ObservedObject var playerViewModel: PlayerViewModel
+    @EnvironmentObject var playerViewModel: PlayerViewModel
     @ObservedObject var plaingGameViewModel: PlaingGameViewModel
     @Binding var path: NavigationPath
     
@@ -87,8 +87,8 @@ struct SelectionLevelView: View {
                             } label: {
                                 levaelView(lavel: 2)
                             }
-                            .disabled(plaingGameViewModel.playerVM.player.level >= 2 ? false : true)
-                            .grayscale(plaingGameViewModel.playerVM.player.level >= 2 ? 0 : 1)
+                            .disabled(plaingGameViewModel.levelPlayer >= 2 ? false : true)
+                            .grayscale(plaingGameViewModel.levelPlayer >= 2 ? 0 : 1)
                             Button {
                                 if playerViewModel.player.settings.vibrationEnabled == true {
                                     HapticManager.instance.impact(style: .light)
@@ -98,8 +98,8 @@ struct SelectionLevelView: View {
                             } label: {
                                 levaelView(lavel: 3)
                             }
-                            .disabled(plaingGameViewModel.playerVM.player.level >= 3 ? false : true)
-                            .grayscale(plaingGameViewModel.playerVM.player.level >= 3 ? 0 : 1)
+                            .disabled(plaingGameViewModel.levelPlayer >= 3 ? false : true)
+                            .grayscale(plaingGameViewModel.levelPlayer >= 3 ? 0 : 1)
                         }
                         
                         GridRow {
@@ -112,8 +112,8 @@ struct SelectionLevelView: View {
                             } label: {
                                 levaelView(lavel: 4)
                             }
-                            .disabled(plaingGameViewModel.playerVM.player.level >= 4 ? false : true)
-                            .grayscale(plaingGameViewModel.playerVM.player.level >= 4 ? 0 : 1)
+                            .disabled(plaingGameViewModel.levelPlayer >= 4 ? false : true)
+                            .grayscale(plaingGameViewModel.levelPlayer >= 4 ? 0 : 1)
                             
                             Button {
                                 if playerViewModel.player.settings.vibrationEnabled == true {
@@ -124,8 +124,8 @@ struct SelectionLevelView: View {
                             } label: {
                                 levaelView(lavel: 5)
                             }
-                            .disabled(plaingGameViewModel.playerVM.player.level >= 5 ? false : true)
-                            .grayscale(plaingGameViewModel.playerVM.player.level >= 5 ? 0 : 1)
+                            .disabled(plaingGameViewModel.levelPlayer >= 5 ? false : true)
+                            .grayscale(plaingGameViewModel.levelPlayer >= 5 ? 0 : 1)
                             
                             Button {
                                 if playerViewModel.player.settings.vibrationEnabled == true {
@@ -136,8 +136,8 @@ struct SelectionLevelView: View {
                             } label: {
                                 levaelView(lavel: 6)
                             }
-                            .disabled(plaingGameViewModel.playerVM.player.level >= 6 ? false : true)
-                            .grayscale(plaingGameViewModel.playerVM.player.level >= 6 ? 0 : 1)
+                            .disabled(plaingGameViewModel.levelPlayer >= 6 ? false : true)
+                            .grayscale(plaingGameViewModel.levelPlayer >= 6 ? 0 : 1)
                         }
                         
                         GridRow {
@@ -150,8 +150,8 @@ struct SelectionLevelView: View {
                             } label: {
                                 levaelView(lavel: 7)
                             }
-                            .disabled(plaingGameViewModel.playerVM.player.level >= 7 ? false : true)
-                            .grayscale(plaingGameViewModel.playerVM.player.level >= 7 ? 0 : 1)
+                            .disabled(plaingGameViewModel.levelPlayer >= 7 ? false : true)
+                            .grayscale(plaingGameViewModel.levelPlayer >= 7 ? 0 : 1)
                             
                             Button {
                                 if playerViewModel.player.settings.vibrationEnabled == true {
@@ -162,8 +162,8 @@ struct SelectionLevelView: View {
                             } label: {
                                 levaelView(lavel: 8)
                             }
-                            .disabled(plaingGameViewModel.playerVM.player.level >= 8 ? false : true)
-                            .grayscale(plaingGameViewModel.playerVM.player.level >= 8 ? 0 : 1)
+                            .disabled(plaingGameViewModel.levelPlayer >= 8 ? false : true)
+                            .grayscale(plaingGameViewModel.levelPlayer >= 8 ? 0 : 1)
                             
                             Button {
                                 if playerViewModel.player.settings.vibrationEnabled == true {
@@ -174,8 +174,8 @@ struct SelectionLevelView: View {
                             } label: {
                                 levaelView(lavel: 9)
                             }
-                            .disabled(plaingGameViewModel.playerVM.player.level >= 9 ? false : true)
-                            .grayscale(plaingGameViewModel.playerVM.player.level >= 9 ? 0 : 1)
+                            .disabled(plaingGameViewModel.levelPlayer >= 9 ? false : true)
+                            .grayscale(plaingGameViewModel.levelPlayer >= 9 ? 0 : 1)
                         }
                     }
                     .padding()

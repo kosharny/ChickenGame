@@ -9,11 +9,11 @@ import SwiftUI
 
 struct LeaderboardView: View {
     
-    @ObservedObject var playerViewModel: PlayerViewModel
+    @ObservedObject var leaderboardViewModel: LeaderboardViewModel
     @Binding var path: NavigationPath
     
     var sortedScores: [Int] {
-        playerViewModel.player.scores
+        leaderboardViewModel.scores
             .sorted(by: >)
     }
     
@@ -26,7 +26,7 @@ struct LeaderboardView: View {
                 VStack {
                     HStack {
                         Button {
-                            if playerViewModel.player.settings.vibrationEnabled == true {
+                            if leaderboardViewModel.vibrationEnabled == true {
                                 HapticManager.instance.impact(style: .light)
                             }
                             path.removeLast()
@@ -48,7 +48,7 @@ struct LeaderboardView: View {
                             .padding(.bottom, 40)
                         List {
                             ForEach(sortedScores, id: \.self) { score in
-                                UserRecordsView(userName: playerViewModel.player.name, score: score)
+                                UserRecordsView(userName: leaderboardViewModel.name, score: score)
                                     .frame(width: width * 0.8, height: height * 0.05)
                                     .listRowBackground(Color.clear)
                                     .listRowSeparator(.hidden)

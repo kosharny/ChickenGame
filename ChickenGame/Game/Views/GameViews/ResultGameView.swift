@@ -11,10 +11,11 @@ struct ResultGameView: View {
     
     
     @ObservedObject var plaingGameViewModel: PlaingGameViewModel
+    @EnvironmentObject var playerViewModel: PlayerViewModel
     @Binding var path: NavigationPath
     
     var sortedScores: [Int] {
-        plaingGameViewModel.playerVM.player.scores
+        playerViewModel.player.scores
             .sorted(by: >)
     }
     
@@ -36,14 +37,14 @@ struct ResultGameView: View {
                         .font(.system(size: 80))
                         .fontWeight(.black)
                     if isFinish {
-                        ScoreView(titleText: "SCORE", scoreCount: !isLose ? plaingGameViewModel.playerVM.player.scores.last ?? 0000 : 0000)
+                        ScoreView(titleText: "SCORE", scoreCount: !isLose ? playerViewModel.player.scores.last ?? 0000 : 0000)
                             .frame(width: width * 0.85, height: height * 0.07)
                         ScoreView(titleText: "BEST", scoreCount: sortedScores.first ?? 0000)
                             .frame(width: width * 0.85, height: height * 0.07)
                     }
                     HStack {
                         Button {
-                            if plaingGameViewModel.playerVM.player.settings.vibrationEnabled == true {
+                            if playerViewModel.player.settings.vibrationEnabled == true {
                                 HapticManager.instance.impact(style: .light)
                             }
                             plaingGameViewModel.stopGame()
@@ -59,7 +60,7 @@ struct ResultGameView: View {
                         if !isLose {
                             Spacer()
                             Button {
-                                if plaingGameViewModel.playerVM.player.settings.vibrationEnabled == true {
+                                if playerViewModel.player.settings.vibrationEnabled == true {
                                     HapticManager.instance.impact(style: .light)
                                 }
                                 plaingGameViewModel.resetGame()
@@ -77,7 +78,7 @@ struct ResultGameView: View {
                     }
                     .padding(.horizontal, 40)
                     Button {
-                        if plaingGameViewModel.playerVM.player.settings.vibrationEnabled == true {
+                        if playerViewModel.player.settings.vibrationEnabled == true {
                             HapticManager.instance.impact(style: .light)
                         }
                         if isLose {

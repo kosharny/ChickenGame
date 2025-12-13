@@ -26,7 +26,7 @@ enum Route: Hashable {
 
 struct AppNavigation: View {
     @EnvironmentObject var playerVM: PlayerViewModel
-    @StateObject private var plaingGameViewModel = PlaingGameViewModel(playerVM: PlayerViewModel())
+//    @StateObject private var plaingGameViewModel = PlaingGameViewModel(playerVM: PlayerViewModel())
     
     @State private var path = NavigationPath()
     
@@ -38,7 +38,7 @@ struct AppNavigation: View {
                     case .menu:
                         MainMenuView(playerViewModel: playerVM, path: $path)
                     case .play:
-                        SelectionLevelView(playerViewModel: playerVM, plaingGameViewModel: plaingGameViewModel, path: $path)
+                        SelectionLevelView(plaingGameViewModel: PlaingGameViewModel(playerVM: playerVM), path: $path)
                     case .settings:
                         SettingsView(settingsViewModel: SettingsViewModel(playerVM: playerVM), path: $path)
                     case .profile:
@@ -46,7 +46,7 @@ struct AppNavigation: View {
                     case .settingsGame:
                         SettingsGameView(settingsViewModel: SettingsViewModel(playerVM: playerVM), path: $path)
                     case .leaderboard:
-                        LeaderboardView(playerViewModel: playerVM, path: $path)
+                        LeaderboardView(leaderboardViewModel: LeaderboardViewModel(playerVM: playerVM), path: $path)
                     case .howToPlay:
                         HowToPlayView(path: $path)
                     case .termsOfUse:
@@ -54,13 +54,13 @@ struct AppNavigation: View {
                     case .privatePolicy:
                         PrivatePolicyView(path: $path)
                     case .game:
-                        GameView(playerViewModel: playerVM, plaingGameViewModel: plaingGameViewModel, path: $path)
+                        GameView(plaingGameViewModel: PlaingGameViewModel(playerVM: playerVM), path: $path)
                     case .pauseGame:
-                        PauseGameView(plaingGameViewModel: plaingGameViewModel, path: $path)
+                        PauseGameView(plaingGameViewModel: PlaingGameViewModel(playerVM: playerVM), path: $path)
                     case .winGame:
-                        WinView(plaingGameViewModel: plaingGameViewModel, path: $path)
+                        WinView(plaingGameViewModel: PlaingGameViewModel(playerVM: playerVM), path: $path)
                     case .loseGame:
-                        LoseView(plaingGameViewModel: plaingGameViewModel, path: $path)
+                        LoseView(plaingGameViewModel: PlaingGameViewModel(playerVM: playerVM), path: $path)
                     case .shop:
                         ShopView(playerViewModel: playerVM, path: $path)
                     }
