@@ -82,9 +82,6 @@ struct GameView: View {
                             }
                             .transition(.scale)
                             .animation(.easeInOut, value: plaingGameViewModel.eggs)
-                            .onTapGesture {
-                                HapticManager.instance.impact(style: .light)
-                            }
                     }
                     HStack(spacing: 10) {
                         ForEach(0..<3) { idx in
@@ -99,6 +96,9 @@ struct GameView: View {
                 }
             }
             .navigationBarBackButtonHidden()
+            .onTapGesture {
+                HapticManager.instance.impact(style: .medium)
+            }
             .onAppear {
                 plaingGameViewModel.startGame()
                 if playerViewModel.player.settings.soundEnabled == true {
