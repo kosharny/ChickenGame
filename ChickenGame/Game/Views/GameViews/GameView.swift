@@ -73,16 +73,6 @@ struct GameView: View {
                     }
                     .padding(.trailing)
                     Spacer()
-                    ForEach(plaingGameViewModel.eggs) { egg in
-                        EggView(imageName: playerViewModel.player.eggImageName)
-                            .frame(width: eggSize, height: eggSize)
-                            .position(x: egg.x * geo.size.width, y: egg.y * geo.size.height)
-                            .onTapGesture {
-                                plaingGameViewModel.tapEgg(egg)
-                            }
-                            .transition(.scale)
-                            .animation(.easeInOut, value: plaingGameViewModel.eggs)
-                    }
                     HStack(spacing: 10) {
                         ForEach(0..<3) { idx in
                             Image("heart")
@@ -94,6 +84,19 @@ struct GameView: View {
                     }
                     .padding(.vertical, 12)
                 }
+                ZStack {
+                    ForEach(plaingGameViewModel.eggs) { egg in
+                        EggView(imageName: playerViewModel.player.eggImageName)
+                            .id(egg.id)
+                            .frame(width: eggSize, height: eggSize)
+                            .position(x: egg.x * geo.size.width, y: egg.y * geo.size.height)
+                            .onTapGesture {
+                                plaingGameViewModel.tapEgg(egg)
+                            }
+                            .transition(.scale)
+                    }
+                }
+                .clipped()
             }
             .navigationBarBackButtonHidden()
             .onTapGesture {

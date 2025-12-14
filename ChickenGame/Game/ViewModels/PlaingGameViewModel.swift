@@ -111,7 +111,7 @@ final class PlaingGameViewModel: ObservableObject {
     
     private func setupTick() {
         invalidateTimers()
-        tickCancellable = Timer.publish(every: 0.1, on: .main, in: .common)
+        tickCancellable = Timer.publish(every: 1.0/60.0, on: .main, in: .common)
             .autoconnect()
             .sink { [weak self] now in
                 self?.tick(now: now)
@@ -125,14 +125,20 @@ final class PlaingGameViewModel: ObservableObject {
     
     private func tick(now: Date) {
         let dt = now.timeIntervalSince(lastTickDate)
+        
         lastTickDate = now
         
         guard state == .playing else { return }
         
         timeSinceLastSpawn += dt
-        if timeSinceLastSpawn >= spawnInterval {
-            timeSinceLastSpawn = 0
+        
+        
+        let maxSpawnsPerTick = 1
+        var spawned = 0
+        while timeSinceLastSpawn >= spawnInterval && spawned < maxSpawnsPerTick {
+            timeSinceLastSpawn -= spawnInterval
             spawnEgg()
+            spawned += 1
         }
         
         accumulateCountdown(by: dt)
@@ -166,7 +172,6 @@ final class PlaingGameViewModel: ObservableObject {
     
     private func spawnEgg() {
         let now = Date().timeIntervalSince1970
-        
         var new = eggs
         let egg = Egg(
             x: CGFloat(Double.random(in: 0.08...0.92)),
@@ -174,27 +179,25 @@ final class PlaingGameViewModel: ObservableObject {
             spawnTime: now,
             lifeTime: eggLifeTime
         )
-        new.append(egg)
-        eggs = new
+
+        withAnimation(.easeOut(duration: 0.15)) {
+            new.append(egg)
+            eggs = new
+        }
     }
     
     private func checkExpiredEggs(currentTime: TimeInterval) {
-        
-        let beforeCount = eggs.count
-        
-        let expired = eggs.filter { currentTime - $0.spawnTime >= $0.lifeTime }
-        
-        if !expired.isEmpty {
-            eggs = eggs.filter { currentTime - $0.spawnTime < $0.lifeTime }
+        let expired = eggs.filter {
+                currentTime - $0.spawnTime >= $0.lifeTime
+            }
+
+            guard !expired.isEmpty else { return }
+
+            eggs.removeAll {
+                currentTime - $0.spawnTime >= $0.lifeTime
+            }
+
             loseLives(expired.count)
-        }
-        
-        
-        let removedCount = beforeCount - eggs.count
-        
-        if removedCount > 0 {
-            loseLives(removedCount)
-        }
     }
     
     private func loseLives(_ count: Int) {
