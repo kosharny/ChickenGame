@@ -12,6 +12,7 @@ import Combine
 final class LeaderboardViewModel: ObservableObject {
     @Published private(set) var scores: [Int] = []
     @Published private(set) var name: String = ""
+    @Published private(set) var imageName: String = ""
     @Published private(set) var vibrationEnabled: Bool = false
     
     private let playerVM: PlayerViewModel
@@ -32,6 +33,7 @@ final class LeaderboardViewModel: ObservableObject {
     private func sync(with player: PlayerData) {
         scores = player.scores
         name = player.name
+        imageName = player.imageName
         vibrationEnabled = player.settings.vibrationEnabled
     }
 }

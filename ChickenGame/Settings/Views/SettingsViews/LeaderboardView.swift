@@ -48,7 +48,7 @@ struct LeaderboardView: View {
                             .padding(.bottom, 40)
                         List {
                             ForEach(sortedScores, id: \.self) { score in
-                                UserRecordsView(userName: leaderboardViewModel.name, score: score)
+                                UserRecordsView(userName: leaderboardViewModel.name, imageName: leaderboardViewModel.imageName, score: score)
                                     .frame(width: width * 0.8, height: height * 0.05)
                                     .listRowBackground(Color.clear)
                                     .listRowSeparator(.hidden)
@@ -74,16 +74,23 @@ struct LeaderboardView: View {
 
 struct UserRecordsView: View {
     var userName: String
+    var imageName: String
     var score: Int
     
     var body: some View {
         GeometryReader { geo in
             let width = geo.size.width
             HStack {
-                Image("lavelBg")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: width * 0.15)
+                ZStack {
+                    Image("lavelBg")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: width * 0.15)
+                    Image(imageName)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: width * 0.06)
+                }
                 Spacer()
                 Text(userName)
                     .foregroundStyle(.white )
