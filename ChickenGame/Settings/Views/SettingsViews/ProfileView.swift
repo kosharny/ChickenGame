@@ -11,6 +11,7 @@ struct ProfileView: View {
     
     @StateObject var profileViewModel: ProfileViewModel
     @Binding var path: NavigationPath
+    @State private var showingSkinSelection = false
     
     
     
@@ -47,13 +48,17 @@ struct ProfileView: View {
                                 .fontWeight(.black)
                                 .padding(.bottom, 80)
                             Button {
-                                
+                                showingSkinSelection = true
                             } label: {
                                 ZStack {
                                     Image("lavelBg")
                                         .resizable()
                                         .scaledToFit()
                                         .frame(width: width * 0.3)
+                                    Image(profileViewModel.imageName)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: width * 0.12)
                                     Image(systemName: "square.and.pencil.circle.fill")
                                         .resizable()
                                         .scaledToFit()
@@ -83,6 +88,9 @@ struct ProfileView: View {
                     
                 }
                 .padding(.bottom, 40)
+                .sheet(isPresented: $showingSkinSelection) {
+                    SkinSelectionView(profileViewModel: profileViewModel, isPresented: $showingSkinSelection)
+                }
             }
             .navigationBarBackButtonHidden()
         }

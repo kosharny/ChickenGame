@@ -12,6 +12,7 @@ final class ProfileViewModel: ObservableObject {
 
     @Published var name: String
     @Published var email: String
+    @Published var imageName: String
 
     @Published private(set) var coins: Int
     @Published private(set) var scores: [Int]
@@ -29,6 +30,7 @@ final class ProfileViewModel: ObservableObject {
 
         self.name = playerVM.player.name
         self.email = playerVM.player.email
+        self.imageName = playerVM.player.imageName
 
         self.coins = playerVM.player.coins
         self.scores = playerVM.player.scores
@@ -47,9 +49,13 @@ final class ProfileViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
+    
+    func saveImage() {
+    }
 
     func saveProfile() {
         playerVM.updateName(name)
         playerVM.updateEmail(email)
+        playerVM.updateImage(name: imageName)
     }
 }

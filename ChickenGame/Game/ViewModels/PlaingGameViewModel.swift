@@ -42,7 +42,7 @@ final class PlaingGameViewModel: ObservableObject {
         playerVM.player.coins
     }
     
-    private let totalGameDuration: Int = 20
+    private let totalGameDuration: Int = 60
     
     private var cancellables = Set<AnyCancellable>()
     

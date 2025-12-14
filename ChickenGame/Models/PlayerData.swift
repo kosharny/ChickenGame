@@ -10,6 +10,7 @@ import Foundation
 struct PlayerData: Codable {
     var name: String
     var email: String
+    var imageName: String
     
     var settings: PlayerSettings
     

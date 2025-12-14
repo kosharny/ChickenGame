@@ -21,6 +21,7 @@ final class PlayerViewModel: ObservableObject {
         self.player = storage.load() ?? PlayerData(
             name: "USERNAME",
             email: "EMAIL",
+            imageName: "chickenMain",
             settings: PlayerSettings(soundEnabled: true, notificationsEnabled: true, vibrationEnabled: true),
             scores: [],
             coins: 1000,
@@ -48,6 +49,11 @@ final class PlayerViewModel: ObservableObject {
     
     func updateEmail(_ email: String) {
         player.email = email
+        save()
+    }
+    
+    func updateImage(name: String) {
+        player.imageName = name
         save()
     }
     
