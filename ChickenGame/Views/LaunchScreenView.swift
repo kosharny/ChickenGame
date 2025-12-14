@@ -12,6 +12,7 @@ struct LaunchScreenView: View {
     
     @State private var progress: CGFloat = 0.0
     @State private var displayedProgress = 0
+    @State private var scale: CGFloat = 1.0
     
     let timer = Timer.publish(every: 0.03, on: .main, in: .common).autoconnect()
     
@@ -22,6 +23,13 @@ struct LaunchScreenView: View {
                 .resizable()
                 .scaledToFit()
                 .padding(.bottom, -200)
+                .scaleEffect(scale)
+                .onAppear {
+                    withAnimation(.linear(duration: 3).repeatForever(autoreverses: true)) {
+                        scale = 1.02
+                    }
+                }
+            
             VStack {
                 Spacer()
                 ZStack {
