@@ -23,7 +23,11 @@ struct SelectionLevelView: View {
                     HStack {
                         Button {
                             HapticManager.instance.impact(style: .light)
-                            path.removeLast()
+                            if plaingGameViewModel.state == .won {
+                                path.append(Route.menu)
+                            } else {
+                                path.removeLast()
+                            }
                         } label: {
                             Image("backButton")
                                 .resizable()

@@ -23,7 +23,7 @@ final class PlayerViewModel: ObservableObject {
             email: "EMAIL",
             settings: PlayerSettings(soundEnabled: true, notificationsEnabled: true, vibrationEnabled: true),
             scores: [],
-            coins: 1000000,
+            coins: 1000,
             level: 1,
             eggImageName: "egg",
             eggImageCollection: ["egg"],
